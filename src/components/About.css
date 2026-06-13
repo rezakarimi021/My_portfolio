@@ -1,0 +1,140 @@
+.about {
+  background: var(--cream-white);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 4rem;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto 4rem;
+  padding: 0 1.5rem;
+}
+
+.about-avatar {
+  display: flex;
+  justify-content: center;
+}
+
+.avatar-ring {
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--brown-accent), var(--brown-mid));
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 20px 60px rgba(59,31,14,0.25);
+}
+
+.avatar-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.about-text h3 {
+  font-size: 1.9rem;
+  color: var(--brown-dark);
+  margin-bottom: 0.3rem;
+}
+
+.about-role-label {
+  color: var(--brown-accent);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+
+.about-text p {
+  color: var(--text-mid);
+  margin-bottom: 0.9rem;
+  font-size: 1.02rem;
+}
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.stat-card {
+  background: var(--cream-mid);
+  border-radius: 16px;
+  padding: 2rem 1rem;
+  text-align: center;
+  border: 1px solid var(--cream-dark);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(59,31,14,0.12);
+}
+
+.stat-value {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--brown-accent);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.stat-icon {
+  display: block;
+  font-size: 1.7rem;
+  margin-bottom: 0.45rem;
+}
+
+.about-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.85rem 0;
+}
+
+.about-badge {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.28rem 0.8rem;
+  border-radius: 20px;
+  background: rgba(99,102,241,0.07);
+  color: var(--brown-mid);
+  border: 1px solid rgba(99,102,241,0.2);
+  font-family: 'Vazirmatn', sans-serif;
+}
+
+[data-theme="dark"] .about-badge {
+  background: rgba(99,102,241,0.14);
+  color: #818cf8;
+  border-color: rgba(99,102,241,0.3);
+}
+
+@media (max-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

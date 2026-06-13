@@ -1,0 +1,149 @@
+.course {
+  background: var(--cream-light);
+}
+
+.course-container {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.2rem;
+}
+
+/* ── Amber / orange box (opposite of navy blue) ─────────── */
+
+.course-silver-box {
+  width: 100%;
+  position: relative;
+  background: linear-gradient(
+    145deg,
+    #fff8ed 0%,
+    #fde8c4 15%,
+    #fcc97e 35%,
+    #fde4b5 50%,
+    #f9a94b 65%,
+    #fcd699 80%,
+    #fff4e0 100%
+  );
+  border-radius: 28px;
+  border: 1.5px solid #f59e0b;
+  box-shadow:
+    0 24px 60px rgba(234, 88, 12, 0.22),
+    0 6px 16px rgba(234, 88, 12, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.75),
+    inset 0 -1px 0 rgba(180, 80, 0, 0.08);
+  overflow: hidden;
+}
+
+.course-shine {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 50%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.6), transparent);
+  border-radius: 28px 28px 0 0;
+  pointer-events: none;
+}
+
+.course-inner {
+  padding: 3rem 2.8rem;
+  text-align: right;
+  direction: rtl;
+  font-family: 'Vazirmatn', sans-serif;
+}
+
+/* ── Content ────────────────────────────────────────────── */
+
+.course-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #c2410c, #ea580c);
+  color: #fff;
+  padding: 0.3rem 1.1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1.4rem;
+  letter-spacing: 0.04em;
+  font-family: 'Vazirmatn', sans-serif;
+  box-shadow: 0 4px 12px rgba(234,88,12,0.35);
+}
+
+.course-title {
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #7c2d12;
+  margin-bottom: 0.9rem;
+  line-height: 1.5;
+}
+
+.course-desc {
+  font-family: 'Vazirmatn', sans-serif;
+  color: #92400e;
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 1.6rem;
+}
+
+.course-features {
+  display: flex;
+  gap: 1.4rem;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.course-features span {
+  font-family: 'Vazirmatn', sans-serif;
+  color: #78350f;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* ── Buy button ─────────────────────────────────────────── */
+
+.course-buy-btn {
+  background: linear-gradient(135deg, #9a3412, #ea580c, #f97316);
+  color: #fff;
+  border: none;
+  padding: 1rem 3.2rem;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Vazirmatn', sans-serif;
+  direction: rtl;
+  box-shadow: 0 8px 28px rgba(234, 88, 12, 0.45);
+  transition: transform 0.2s, box-shadow 0.2s;
+  letter-spacing: 0.02em;
+}
+
+.course-buy-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 36px rgba(234, 88, 12, 0.55);
+}
+
+/* ── Reviews wrapper ────────────────────────────────────── */
+.course-reviews-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+/* ── Dark mode ──────────────────────────────────────────── */
+
+[data-theme="dark"] .course {
+  background: #060914;
+}
+
+[data-theme="dark"] .course-silver-box {
+  background: linear-gradient(145deg, #431407, #7c2d12, #9a3412, #7c2d12, #431407);
+  border-color: rgba(249,115,22,0.5);
+  box-shadow:
+    0 24px 60px rgba(234, 88, 12, 0.3),
+    0 6px 16px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 200, 100, 0.15);
+}
+
+[data-theme="dark"] .course-title { color: #fed7aa; }
+[data-theme="dark"] .course-desc  { color: #fdba74; }
+[data-theme="dark"] .course-features span { color: #fbbf24; }

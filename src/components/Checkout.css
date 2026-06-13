@@ -1,0 +1,544 @@
+/* ── Overlay ─────────────────────────────────────────────── */
+.checkout-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 7, 20, 0.85);
+  backdrop-filter: blur(6px);
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: co-fade 0.22s ease;
+  font-family: 'Vazirmatn', sans-serif;
+}
+
+@keyframes co-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Box ─────────────────────────────────────────────────── */
+.checkout-box {
+  background: #0f172a;
+  border: 1px solid rgba(99,102,241,0.25);
+  border-radius: 24px;
+  width: 100%;
+  max-width: 480px;
+  max-height: 92vh;
+  overflow-y: auto;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(129,140,248,0.08);
+  animation: co-slide 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes co-slide {
+  from { transform: translateY(28px) scale(0.97); opacity: 0; }
+  to   { transform: translateY(0)    scale(1);    opacity: 1; }
+}
+
+/* ── Header ──────────────────────────────────────────────── */
+.checkout-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.4rem 1.6rem 1rem;
+  border-bottom: 1px solid rgba(99,102,241,0.15);
+}
+
+.checkout-header h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #e2e8f0;
+}
+
+.checkout-close {
+  background: rgba(99,102,241,0.1);
+  border: 1px solid rgba(129,140,248,0.2);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  color: #94a3b8;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+}
+
+.checkout-close:hover { background: rgba(239,68,68,0.2); color: #f87171; }
+
+/* ── Order summary ────────────────────────────────────────── */
+.checkout-summary {
+  padding: 1.2rem 1.6rem;
+  background: rgba(99,102,241,0.06);
+  border-bottom: 1px solid rgba(99,102,241,0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.checkout-summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+.checkout-summary-row strong { color: #cbd5e1; }
+
+.checkout-summary-total {
+  padding-top: 0.55rem;
+  border-top: 1px solid rgba(99,102,241,0.15);
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.checkout-total-price {
+  color: #a78bfa !important;
+  font-size: 1.1rem;
+}
+
+/* ── Tabs ─────────────────────────────────────────────────── */
+.checkout-tabs {
+  display: flex;
+  gap: 0;
+  padding: 1rem 1.6rem 0;
+  border-bottom: 1px solid rgba(99,102,241,0.12);
+}
+
+.checkout-tab {
+  flex: 1;
+  background: none;
+  border: none;
+  border-bottom: 2.5px solid transparent;
+  color: #64748b;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.6rem 0 0.9rem;
+  cursor: pointer;
+  font-family: 'Vazirmatn', sans-serif;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.checkout-tab.active {
+  color: #a78bfa;
+  border-bottom-color: #a78bfa;
+}
+
+.checkout-tab:hover:not(.active) { color: #94a3b8; }
+
+/* ── Tab body ─────────────────────────────────────────────── */
+.checkout-tab-body {
+  padding: 1.4rem 1.6rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.checkout-instruction {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  line-height: 1.7;
+}
+
+.checkout-instruction strong { color: #a78bfa; }
+
+/* ── Debit card visual ────────────────────────────────────── */
+.checkout-card {
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%);
+  border: 1px solid rgba(167,139,250,0.3);
+  border-radius: 18px;
+  padding: 1.4rem 1.6rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(99,102,241,0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* subtle shine */
+.checkout-card::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 130px; height: 130px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 50%;
+}
+
+.checkout-card-chip {
+  width: 36px;
+  height: 28px;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.checkout-card-number {
+  font-family: 'Courier New', monospace;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  letter-spacing: 0.06em;
+  direction: ltr;
+  text-align: center;
+}
+
+.checkout-card-meta {
+  display: flex;
+  justify-content: space-between;
+}
+
+.checkout-card-label {
+  font-size: 0.68rem;
+  color: rgba(196,181,253,0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.15rem;
+}
+
+.checkout-card-value {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #ddd6fe;
+}
+
+.checkout-copy-btn {
+  align-self: flex-start;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 20px;
+  color: #ddd6fe;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.3rem 0.9rem;
+  cursor: pointer;
+  font-family: 'Vazirmatn', sans-serif;
+  transition: background 0.2s, color 0.2s;
+}
+
+.checkout-copy-btn.copied {
+  background: rgba(34,197,94,0.25);
+  border-color: rgba(34,197,94,0.4);
+  color: #86efac;
+}
+
+.checkout-copy-btn:not(.copied):hover {
+  background: rgba(167,139,250,0.25);
+}
+
+/* ── Form ─────────────────────────────────────────────────── */
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.checkout-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.checkout-field label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+.checkout-field input {
+  background: rgba(30,27,75,0.6);
+  border: 1px solid rgba(99,102,241,0.25);
+  border-radius: 10px;
+  color: #e2e8f0;
+  font-size: 0.92rem;
+  padding: 0.7rem 0.9rem;
+  font-family: 'Vazirmatn', sans-serif;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.checkout-field input:focus {
+  border-color: rgba(167,139,250,0.6);
+  background: rgba(30,27,75,0.9);
+}
+
+.checkout-field input::placeholder { color: #334155; }
+
+.checkout-error {
+  font-size: 0.82rem;
+  color: #f87171;
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.2);
+  border-radius: 8px;
+  padding: 0.5rem 0.8rem;
+}
+
+/* ── Gateway tab ──────────────────────────────────────────── */
+.checkout-gateway-box {
+  background: rgba(99,102,241,0.08);
+  border: 1px solid rgba(99,102,241,0.2);
+  border-radius: 16px;
+  padding: 1.4rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.checkout-gateway-logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #f97316, #facc15);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+}
+
+.checkout-gateway-amount {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #a78bfa;
+}
+
+.checkout-gateway-note {
+  font-size: 0.78rem;
+  color: #475569;
+}
+
+.checkout-gateway-hint {
+  font-size: 0.8rem;
+  color: #64748b;
+  line-height: 1.65;
+  background: rgba(251,191,36,0.06);
+  border: 1px solid rgba(251,191,36,0.15);
+  border-radius: 10px;
+  padding: 0.7rem 0.9rem;
+}
+
+/* ── Primary button ───────────────────────────────────────── */
+.checkout-btn-primary {
+  width: 100%;
+  padding: 0.88rem 1rem;
+  background: linear-gradient(135deg, #6366f1, #7c3aed);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Vazirmatn', sans-serif;
+  transition: opacity 0.2s, transform 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.checkout-btn-primary:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.checkout-btn-primary.loading { opacity: 0.7; cursor: wait; }
+
+.checkout-spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Success screen ───────────────────────────────────────── */
+.checkout-success-box {
+  text-align: center;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.checkout-success-icon {
+  font-size: 3.5rem;
+  animation: pop-in 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+@keyframes pop-in {
+  from { transform: scale(0.4); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+.checkout-success-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #a78bfa;
+}
+
+.checkout-success-msg {
+  font-size: 0.92rem;
+  color: #94a3b8;
+  line-height: 1.75;
+  max-width: 340px;
+}
+
+.checkout-success-detail {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 280px;
+  font-size: 0.9rem;
+  color: #64748b;
+  border-bottom: 1px solid rgba(99,102,241,0.1);
+  padding-bottom: 0.5rem;
+}
+
+.checkout-success-detail strong { color: #c7d2fe; }
+
+/* ── New success screen ───────────────────────────────────── */
+.cks-icon  { font-size: 3.2rem; animation: pop-in 0.5s cubic-bezier(0.34,1.56,0.64,1) both; }
+.cks-title { font-size: 1.35rem; font-weight: 800; color: #a78bfa; margin: 0; }
+.cks-msg   { font-size: 0.88rem; color: #94a3b8; line-height: 1.7; max-width: 340px; margin: 0; text-align: center; }
+
+.cks-receipt {
+  width: 100%;
+  max-width: 340px;
+  background: rgba(99,102,241,0.07);
+  border: 1px solid rgba(99,102,241,0.18);
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin: 0.5rem 0;
+}
+
+.cks-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: #94a3b8;
+}
+.cks-row strong { color: #c7d2fe; font-weight: 700; direction: ltr; }
+
+.cks-status         { font-size: 0.78rem; font-weight: 700; padding: 0.18rem 0.6rem; border-radius: 6px; }
+.cks-status--ok     { color: #6ee7b7; background: rgba(52,211,153,0.15); }
+.cks-status--pending{ color: #fde68a; background: rgba(251,191,36,0.15); }
+
+.cks-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  width: 100%;
+  max-width: 340px;
+}
+
+.checkout-btn-secondary {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  color: #a78bfa;
+  border: 1.5px solid rgba(167,139,250,0.4);
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Vazirmatn', sans-serif;
+  transition: background 0.18s;
+}
+.checkout-btn-secondary:hover { background: rgba(167,139,250,0.08); }
+
+/* ── ZarinPal tab ─────────────────────────────────────────── */
+.checkout-header-sub {
+  font-size: 0.72rem;
+  color: #10b981;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  margin-top: 0.18rem;
+}
+
+.checkout-zp-box {
+  background: linear-gradient(160deg, rgba(5,150,105,0.1) 0%, rgba(16,185,129,0.06) 100%);
+  border: 1.5px solid rgba(16,185,129,0.3);
+  border-radius: 16px;
+  padding: 1.4rem 1.2rem;
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+
+.checkout-zp-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.checkout-zp-z {
+  font-size: 2.2rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #10b981, #059669);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+.checkout-zp-text {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #34d399;
+  letter-spacing: -0.02em;
+}
+
+.checkout-zp-divider {
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #10b981, transparent);
+  margin: 0 auto 0.85rem;
+}
+
+.checkout-zp-amount {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #6ee7b7;
+  font-family: 'Vazirmatn', sans-serif;
+  direction: rtl;
+  margin-bottom: 0.7rem;
+}
+
+.checkout-zp-features {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.72rem;
+  color: #6ee7b7;
+  opacity: 0.75;
+  font-family: 'Vazirmatn', sans-serif;
+}
+
+.checkout-btn-zp {
+  background: linear-gradient(135deg, #059669, #10b981) !important;
+}
+.checkout-btn-zp:hover:not(:disabled) { filter: brightness(1.08); }
+
+.checkout-gateway-hint {
+  margin-top: 0.9rem;
+  font-size: 0.74rem;
+  color: #475569;
+  line-height: 1.6;
+  text-align: center;
+  font-family: 'Vazirmatn', sans-serif;
+}
+.checkout-gateway-hint a { color: #10b981; text-decoration: underline; }
+.checkout-gateway-hint strong { color: #94a3b8; }

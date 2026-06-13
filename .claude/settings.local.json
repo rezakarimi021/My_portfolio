@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm.cmd install *)",
+      "Bash(mkdir -p src/i18n/locales)",
+      "Bash(mkdir -p src/hooks)"
+    ]
+  }
+}

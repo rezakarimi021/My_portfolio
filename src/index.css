@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Vazirmatn:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --brown-dark:   #1e1b4b;   /* deep indigo  — hero, navbar, footer, headings */
+  --brown-mid:    #4338ca;   /* indigo-700   — secondary elements              */
+  --brown-light:  #818cf8;   /* indigo-400   — hover states                   */
+  --brown-accent: #7c3aed;   /* violet-600   — CTA, highlights, bars           */
+  --cream-dark:   #dde1f0;   /* border       — card / input borders            */
+  --cream-mid:    #f0f2fb;   /* alt section  — alternate section bg            */
+  --cream-light:  #f8f9ff;   /* body bg      — page background                */
+  --cream-white:  #ffffff;   /* card/section — white card backgrounds          */
+  --text-dark:    #0f172a;   /* primary text                                   */
+  --text-mid:     #475569;   /* secondary text                                 */
+  --text-light:   #94a3b8;   /* muted text                                     */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--cream-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.section-title {
+  font-size: 2.4rem;
+  color: var(--brown-dark);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.section-divider {
+  width: 60px;
+  height: 3px;
+  background: var(--brown-accent);
+  margin: 0 auto 3rem;
+  border-radius: 2px;
+}
+
+/* ── Dark mode ─────────────────────────────────────────────────────────── */
+
+[data-theme="dark"] {
+  --text-dark:    #e2e8f0;
+  --text-mid:     #94a3b8;
+  --text-light:   #64748b;
+  --brown-accent: #a78bfa;
+}
+
+[data-theme="dark"] body {
+  background-color: #060914;
+}
+
+[data-theme="dark"] .about,
+[data-theme="dark"] .projects {
+  background: #0c1121;
+}
+
+[data-theme="dark"] .skills,
+[data-theme="dark"] .contact {
+  background: #0f1625;
+}
+
+[data-theme="dark"] .stat-card {
+  background: #0f1625;
+  border-color: #1e2d4a;
+}
+
+[data-theme="dark"] .skill-category {
+  background: #0c1121;
+  border-color: #1e2d4a;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+[data-theme="dark"] .skill-category h3 {
+  color: #94a3b8;
+  border-bottom-color: #1e2d4a;
+}
+
+[data-theme="dark"] .skill-bar-bg {
+  background: #1e2d4a;
+}
+
+[data-theme="dark"] .project-card {
+  background: #060914;
+  border-color: #1e2d4a;
+}
+
+[data-theme="dark"] .project-card h3 {
+  color: var(--text-dark);
+}
+
+[data-theme="dark"] .tag {
+  color: var(--brown-accent);
+  background: rgba(167,139,250,0.15);
+  border-color: rgba(167,139,250,0.35);
+}
+
+[data-theme="dark"] .contact-form {
+  background: #0c1121;
+  border-color: #1e2d4a;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group textarea {
+  background: #060914;
+  border-color: #1e2d4a;
+  color: var(--text-dark);
+}
+
+[data-theme="dark"] .form-group input::placeholder,
+[data-theme="dark"] .form-group textarea::placeholder {
+  color: #3d5070;
+}
+
+[data-theme="dark"] .contact-list a {
+  color: var(--brown-accent);
+}
+
+/* ── Scroll-reveal ────────────────────────────────────────── */
+.sr-hidden {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.sr-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── App spinner (lazy-load fallback) ─────────────────────── */
+.app-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+}
+
+.app-spinner-ring {
+  width: 44px;
+  height: 44px;
+  border: 3px solid rgba(99,102,241,0.2);
+  border-top-color: #6366f1;
+  border-radius: 50%;
+  animation: app-spin 0.8s linear infinite;
+}
+
+@keyframes app-spin { to { transform: rotate(360deg); } }
+
+[data-theme="dark"] .section-title,
+[data-theme="dark"] .about-text h3,
+[data-theme="dark"] .contact-info h3 {
+  color: var(--text-dark);
+}
