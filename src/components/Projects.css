@@ -1,5 +1,23 @@
 .projects { background: var(--cream-light); }
 
+/* ── Chip ─────────────────────────────────────────────────── */
+.cc-chip {
+  display: block;
+  text-align: center;
+  margin-bottom: 0.8rem;
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--brown-accent);
+}
+
+/* ── Timer wrap ───────────────────────────────────────────── */
+.cc-timer-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
 /* ── Filter bar ───────────────────────────────────────────── */
 .cc-filters {
   display: flex;
@@ -49,16 +67,18 @@
   box-shadow:
     0 2px 8px rgba(30,27,75,0.04),
     0 8px 24px rgba(30,27,75,0.06);
-  transition: transform 0.24s ease, box-shadow 0.24s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
+  transform-style: preserve-3d;
+  perspective: 800px;
 }
 
 .cc:hover {
-  transform: translateY(-7px);
+  transform: translateY(-10px) rotateX(3deg) rotateY(-2deg) scale(1.02);
   box-shadow:
-    0 4px 12px rgba(30,27,75,0.08),
-    0 20px 50px rgba(30,27,75,0.14);
+    0 8px 20px rgba(30,27,75,0.1),
+    0 24px 60px rgba(30,27,75,0.18);
 }
 
 /* ── Thumbnail ────────────────────────────────────────────── */
@@ -78,6 +98,37 @@
   background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.18) 100%);
   pointer-events: none;
 }
+
+/* ── View Course overlay ──────────────────────────────────── */
+.cc-thumb-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 3;
+}
+
+.cc:hover .cc-thumb-overlay { opacity: 1; }
+
+.cc-view-btn {
+  background: rgba(255,255,255,0.15);
+  border: 2px solid #fff;
+  border-radius: 30px;
+  color: #fff;
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.5rem 1.2rem;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s, transform 0.2s;
+}
+
+.cc-view-btn:hover { background: rgba(255,255,255,0.3); transform: scale(1.05); }
 
 .cc-emoji {
   font-size: 3.8rem;

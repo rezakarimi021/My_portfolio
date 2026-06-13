@@ -1,0 +1,138 @@
+.sg-page { min-height: 100vh; background: var(--cream-light); }
+[data-theme="dark"] .sg-page { background: #060914; }
+
+.sg-header {
+  background: linear-gradient(145deg,#050312 0%,#0d0a2e 60%,#1a1148 100%);
+  padding: 7rem 2rem 3rem;
+  text-align: center;
+  color: #fff;
+  position: relative;
+}
+
+.sg-back {
+  position: absolute;
+  top: 5rem;
+  right: 2rem;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  padding: 0.45rem 1rem;
+  border-radius: 8px;
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+.sg-back:hover { background: rgba(255,255,255,0.2); }
+
+.sg-page-title { font-family:'Vazirmatn',sans-serif; font-size:2rem; font-weight:800; color:#fff; margin-bottom:0.5rem; }
+.sg-page-sub   { font-family:'Vazirmatn',sans-serif; font-size:0.95rem; color:rgba(255,255,255,0.75); }
+
+.sg-content { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; }
+
+.sg-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 2.5rem;
+  justify-content: center;
+}
+
+.sg-filter-btn {
+  padding: 0.45rem 1.1rem;
+  border: 1.5px solid var(--cream-dark);
+  border-radius: 30px;
+  background: var(--cream-white);
+  color: var(--text-mid);
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.sg-filter-btn:hover, .sg-filter-btn.active { background: var(--brown-dark); border-color: var(--brown-dark); color: #fff; }
+[data-theme="dark"] .sg-filter-btn { background: #0f1a2e; border-color: #1e2d4a; color: #94a3b8; }
+[data-theme="dark"] .sg-filter-btn:hover,
+[data-theme="dark"] .sg-filter-btn.active { background: var(--brown-mid); border-color: var(--brown-mid); color: #fff; }
+
+.sg-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.8rem;
+}
+
+.sg-card {
+  border-radius: 18px;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.sg-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(30,27,75,0.14); }
+
+.sg-thumb {
+  position: relative;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.sg-emoji { font-size: 3.5rem; transition: transform 0.3s ease; }
+.sg-card:hover .sg-emoji { transform: scale(1.2); }
+
+.sg-tags-overlay {
+  position: absolute;
+  bottom: 0.6rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  padding: 0 0.5rem;
+}
+.sg-tag {
+  font-size: 0.6rem;
+  font-weight: 700;
+  background: rgba(0,0,0,0.4);
+  color: #fff;
+  padding: 0.12rem 0.45rem;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+  font-family: 'Vazirmatn', sans-serif;
+}
+
+.sg-body { padding: 1.2rem; }
+.sg-title { font-family:'Vazirmatn',sans-serif; font-size:0.95rem; font-weight:800; color:var(--text-dark); margin-bottom:0.4rem; line-height:1.4; }
+.sg-desc  { font-family:'Vazirmatn',sans-serif; font-size:0.78rem; color:var(--text-mid); line-height:1.65; margin-bottom:1rem; }
+
+.sg-footer { display:flex; align-items:center; justify-content:space-between; border-top:1px solid var(--cream-dark); padding-top:0.8rem; }
+[data-theme="dark"] .sg-footer { border-top-color: #1e2d4a; }
+
+.sg-student { display:flex; align-items:center; gap:0.6rem; }
+.sg-avatar {
+  width:36px; height:36px; border-radius:50%;
+  background: linear-gradient(135deg,var(--brown-dark),var(--brown-accent));
+  display:flex; align-items:center; justify-content:center;
+  font-size:0.85rem; font-weight:800; color:#fff;
+  flex-shrink:0;
+}
+.sg-student-name { font-family:'Vazirmatn',sans-serif; font-size:0.78rem; font-weight:700; color:var(--text-dark); }
+.sg-course       { font-family:'Vazirmatn',sans-serif; font-size:0.65rem; color:var(--text-light); }
+
+.sg-actions { display:flex; align-items:center; gap:0.6rem; }
+.sg-likes { font-family:'Vazirmatn',sans-serif; font-size:0.75rem; color:var(--text-light); }
+.sg-demo-btn {
+  padding: 0.4rem 0.9rem;
+  background: linear-gradient(135deg,var(--brown-dark),var(--brown-accent));
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter 0.18s;
+}
+.sg-demo-btn:hover { filter: brightness(1.1); }
+
+@media (max-width: 900px) { .sg-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 580px) { .sg-grid { grid-template-columns: 1fr; } }

@@ -185,6 +185,63 @@
   transition: background 0.2s, color 0.2s;
 }
 
+/* ── Progress bar ────────────────────────────────────────── */
+.mc-progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.3rem;
+}
+
+.mc-progress-bar {
+  flex: 1;
+  height: 5px;
+  background: rgba(99,102,241,0.12);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.mc-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  border-radius: 10px;
+  transition: width 0.5s ease;
+}
+
+.mc-progress-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #6366f1;
+  min-width: 2.5rem;
+  text-align: left;
+}
+
+/* ── Header right ────────────────────────────────────────── */
+.mc-header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.mc-cert-badge {
+  font-size: 0.68rem;
+  font-weight: 800;
+  background: linear-gradient(135deg,#f59e0b,#ef4444);
+  color: #fff;
+  padding: 0.18rem 0.55rem;
+  border-radius: 6px;
+  font-family: 'Vazirmatn', sans-serif;
+  white-space: nowrap;
+}
+
+/* ── Watched video ───────────────────────────────────────── */
+.mc-video-item.mc-watched { opacity: 0.6; }
+.mc-video-item.mc-watched .mc-num {
+  color: #10b981;
+  font-weight: 800;
+}
+
 /* ── Empty state ─────────────────────────────────────────── */
 .mc-empty {
   display: flex;

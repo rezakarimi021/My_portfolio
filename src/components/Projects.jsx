@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import './Projects.css';
 import { useLocale } from '../hooks/useLocale';
+import { useScrollReveal } from '../hooks/useScrollReveal';
+import DiscountTimer from './DiscountTimer';
 
 export const COURSE_DATA = [
   { id: 1, key: 'c1', emoji: '⚛️', gradient: 'linear-gradient(135deg,#0ea5e9 0%,#6366f1 100%)', levelClass: 'green',  hours: 40, lessons: 72, students: 1240, rating: 4.9, reviews: 318, tags: ['React', 'Hooks', 'Context', 'React Query'], price: 590_000, origPrice: 890_000, badge: 'hot' },
@@ -23,19 +25,38 @@ const Stars = ({ rating }) => {
   );
 };
 
-function CourseCard({ course, onBuy }) {
+function addRipple(e) {
+  const btn = e.currentTarget;
+  const circle = document.createElement('span');
+  const rect = btn.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height);
+  circle.className = 'ripple-circle';
+  circle.style.cssText = `width:${size}px;height:${size}px;top:${e.clientY - rect.top - size / 2}px;left:${e.clientX - rect.left - size / 2}px;`;
+  btn.appendChild(circle);
+  setTimeout(() => circle.remove(), 600);
+}
+
+function CourseCard({ course, onBuy, onViewDetail, delay }) {
   const { t, dir, fmtNum, fmtPrice } = useLocale();
   const discount    = Math.round((1 - course.price / course.origPrice) * 100);
   const levelColor  = LEVEL_COLORS[course.levelClass];
   const courseT     = t(`projects.courses.${course.key}`);
+  const ref         = useScrollReveal({ type: 'up', delay });
+
+  const handleBuyClick = (e) => { addRipple(e); onBuy(); };
 
   return (
-    <article className="cc" dir={dir}>
+    <article ref={ref} className="cc" dir={dir}>
       <div className="cc-thumb" style={{ background: course.gradient }}>
         <span className="cc-emoji">{course.emoji}</span>
         {course.badge === 'hot' && <span className="cc-badge cc-badge--hot">{t('projects.badgeHot')}</span>}
         {course.badge === 'new' && <span className="cc-badge cc-badge--new">{t('projects.badgeNew')}</span>}
         <span className="cc-discount">−{discount}%</span>
+        <div className="cc-thumb-overlay">
+          <button className="cc-view-btn" onClick={() => onViewDetail(course.id)}>
+            🔍 مشاهده دوره
+          </button>
+        </div>
       </div>
 
       <div className="cc-body">
@@ -66,7 +87,7 @@ function CourseCard({ course, onBuy }) {
             <span className="cc-price-orig">{fmtPrice(course.origPrice)}</span>
             <span className="cc-price">{fmtPrice(course.price)}</span>
           </div>
-          <button className="cc-buy" onClick={onBuy}>
+          <button className="cc-buy btn-ripple" onClick={handleBuyClick}>
             {t('projects.buyBtn')}
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
                  stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
@@ -79,9 +100,12 @@ function CourseCard({ course, onBuy }) {
   );
 }
 
-export default function Projects({ onBuy }) {
+const DISCOUNT_END = new Date(Date.now() + 18 * 3600 * 1000).toISOString();
+
+export default function Projects({ onBuy, onViewDetail }) {
   const { t, dir } = useLocale();
   const [filter, setFilter] = useState('all');
+  const titleRef = useScrollReveal({ type: 'fade' });
 
   const FILTERS = [
     { key: 'all',   label: t('projects.filterAll') },
@@ -96,8 +120,14 @@ export default function Projects({ onBuy }) {
 
   return (
     <section id="projects" className="projects section">
-      <h2 className="section-title">{t('projects.sectionTitle')}</h2>
-      <div className="section-divider" />
+      <div ref={titleRef}>
+        <span className="cc-chip">🎓 دوره‌های آموزشی</span>
+        <h2 className="section-title">{t('projects.sectionTitle')}</h2>
+        <div className="section-divider" />
+        <div className="cc-timer-wrap">
+          <DiscountTimer endDate={DISCOUNT_END} label="تخفیف ویژه تا پایان:" />
+        </div>
+      </div>
 
       <div className="cc-filters" dir={dir}>
         {FILTERS.map(f => (
@@ -112,7 +142,15 @@ export default function Projects({ onBuy }) {
       </div>
 
       <div className="cc-grid">
-        {visible.map(c => <CourseCard key={c.id} course={c} onBuy={onBuy} />)}
+        {visible.map((c, i) => (
+          <CourseCard
+            key={c.id}
+            course={c}
+            onBuy={onBuy}
+            onViewDetail={onViewDetail || (() => {})}
+            delay={i * 80}
+          />
+        ))}
       </div>
 
       <p className="cc-bundle-note" dir={dir}>

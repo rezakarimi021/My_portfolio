@@ -8,16 +8,23 @@ const SOCIALS = [
   { key: 'telegram', icon: '📱', href: '#' },
 ];
 
-export default function Footer() {
+export default function Footer({ onBlogClick, onEventsClick, onGalleryClick, onInstructorsClick }) {
   const { t, dir } = useLocale();
   const year = new Date().getFullYear();
 
   const QUICK_LINKS = [
-    { labelKey: 'footer.links.about',   href: '#about'    },
-    { labelKey: 'footer.links.courses', href: '#projects' },
-    { labelKey: 'footer.links.books',   href: '#books'    },
-    { labelKey: 'footer.links.skills',  href: '#skills'   },
-    { labelKey: 'footer.links.contact', href: '#contact'  },
+    { labelKey: 'footer.links.about',   href: '#about',    onClick: null },
+    { labelKey: 'footer.links.courses', href: '#projects', onClick: null },
+    { labelKey: 'footer.links.books',   href: '#books',    onClick: null },
+    { labelKey: 'footer.links.contact', href: '#contact',  onClick: null },
+  ];
+
+  const PAGE_LINKS = [
+    { label: 'وبلاگ آموزشی',     onClick: onBlogClick },
+    { label: 'رویدادها',          onClick: onEventsClick },
+    { label: 'گالری دانشجویان',   onClick: onGalleryClick },
+    { label: 'مدرسان ما',         onClick: onInstructorsClick },
+    { label: 'سوالات متداول',     href: '#faq' },
   ];
 
   const COURSE_LINKS = [
@@ -74,6 +81,20 @@ export default function Footer() {
             <ul className="footer-links">
               {COURSE_LINKS.map(l => (
                 <li key={l.labelKey}><a href={l.href}>{t(l.labelKey)}</a></li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="footer-col">
+            <h4 className="footer-col-title">صفحات سایت</h4>
+            <ul className="footer-links">
+              {PAGE_LINKS.map(l => (
+                <li key={l.label}>
+                  {l.onClick
+                    ? <button className="footer-page-link" onClick={l.onClick}>{l.label}</button>
+                    : <a href={l.href}>{l.label}</a>
+                  }
+                </li>
               ))}
             </ul>
           </div>

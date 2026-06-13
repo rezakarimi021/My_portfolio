@@ -41,8 +41,8 @@
 /* ── Grid ── */
 .footer-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1.5fr;
-  gap: 3rem;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
+  gap: 2rem;
 }
 
 /* ── Brand ── */
@@ -140,6 +140,20 @@
   color: #a78bfa;
   padding-right: 4px;
 }
+
+.footer-page-link {
+  background: none;
+  border: none;
+  font-size: 0.82rem;
+  color: rgba(241,245,249,0.55);
+  font-family: 'Vazirmatn', sans-serif;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s, padding-right 0.2s;
+  display: block;
+  text-align: right;
+}
+.footer-page-link:hover { color: #a78bfa; padding-right: 4px; }
 
 /* ── Contact ── */
 .footer-contact-list {

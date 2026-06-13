@@ -142,10 +142,50 @@ a {
   transition: opacity 0.65s ease, transform 0.65s ease;
 }
 
-.sr-visible {
-  opacity: 1;
-  transform: translateY(0);
+.sr-init { transition: opacity 0.65s ease, transform 0.65s ease; }
+.sr-up    { opacity: 0; transform: translateY(40px);  }
+.sr-left  { opacity: 0; transform: translateX(-50px); }
+.sr-right { opacity: 0; transform: translateX(50px);  }
+.sr-fade  { opacity: 0; }
+.sr-scale { opacity: 0; transform: scale(0.88);       }
+
+.sr-stagger > * {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  opacity: 0;
+  transform: translateY(24px);
 }
+.sr-stagger.sr-visible > *:nth-child(1) { opacity:1; transform:none; transition-delay:0.05s; }
+.sr-stagger.sr-visible > *:nth-child(2) { opacity:1; transform:none; transition-delay:0.15s; }
+.sr-stagger.sr-visible > *:nth-child(3) { opacity:1; transform:none; transition-delay:0.25s; }
+.sr-stagger.sr-visible > *:nth-child(4) { opacity:1; transform:none; transition-delay:0.35s; }
+.sr-stagger.sr-visible > *:nth-child(5) { opacity:1; transform:none; transition-delay:0.45s; }
+.sr-stagger.sr-visible > *:nth-child(6) { opacity:1; transform:none; transition-delay:0.55s; }
+
+.sr-visible { opacity: 1 !important; transform: none !important; }
+
+/* ── Glass card utility ───────────────────────────────────── */
+.glass-card {
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.8);
+  box-shadow: 0 8px 32px rgba(30,27,75,0.08);
+}
+[data-theme="dark"] .glass-card {
+  background: rgba(15,26,46,0.72);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+/* ── Ripple button ────────────────────────────────────────── */
+.btn-ripple { position:relative; overflow:hidden; }
+.btn-ripple .ripple-circle {
+  position:absolute; border-radius:50%;
+  background:rgba(255,255,255,0.35);
+  transform:scale(0); animation:ripple 0.55s ease-out forwards;
+  pointer-events:none;
+}
+@keyframes ripple { to { transform:scale(4); opacity:0; } }
 
 /* ── App spinner (lazy-load fallback) ─────────────────────── */
 .app-spinner {

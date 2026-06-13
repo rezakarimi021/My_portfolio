@@ -81,8 +81,31 @@ const COURSES_DATA = [
   },
 ];
 
+const PROGRESS_DATA = {
+  react:    { watched: 3, total: 6 },
+  nextjs:   { watched: 2, total: 5 },
+  js:       { watched: 5, total: 6 },
+  node:     { watched: 1, total: 5 },
+  ts:       { watched: 0, total: 5 },
+  tailwind: { watched: 4, total: 5 },
+};
+
+function ProgressBar({ pct }) {
+  return (
+    <div className="mc-progress-wrap">
+      <div className="mc-progress-bar">
+        <div className="mc-progress-fill" style={{ width: `${pct}%` }} />
+      </div>
+      <span className="mc-progress-label">{pct}٪</span>
+    </div>
+  );
+}
+
 function CourseBlock({ course, onVideoClick }) {
   const [open, setOpen] = useState(false);
+  const prog = PROGRESS_DATA[course.id] || { watched: 0, total: course.videos.length };
+  const pct  = Math.round((prog.watched / prog.total) * 100);
+
   return (
     <div className={`mc-course ${open ? 'mc-open' : ''}`}>
       <button className="mc-course-header" onClick={() => setOpen(!open)}>
@@ -90,16 +113,20 @@ function CourseBlock({ course, onVideoClick }) {
         <div className="mc-course-meta">
           <span className="mc-course-title">{course.title}</span>
           <span className="mc-course-count">{course.videos.length} درس ویدیویی</span>
+          <ProgressBar pct={pct} />
         </div>
-        <span className="mc-chevron">{open ? '▲' : '▼'}</span>
+        <div className="mc-header-right">
+          {pct === 100 && <span className="mc-cert-badge">🏆 تمام‌شده</span>}
+          <span className="mc-chevron">{open ? '▲' : '▼'}</span>
+        </div>
       </button>
       {open && (
         <ul className="mc-video-list">
           {course.videos.map((v, i) => (
-            <li key={v.id} className="mc-video-item"
+            <li key={v.id} className={`mc-video-item ${i < prog.watched ? 'mc-watched' : ''}`}
                 onClick={() => onVideoClick({ ...v, youtubeId: course.youtubeId,
                                               vimeoId: course.vimeoId, mp4Url: course.mp4Url })}>
-              <span className="mc-num">{i + 1}</span>
+              <span className="mc-num">{i < prog.watched ? '✓' : i + 1}</span>
               <span className="mc-vtitle">{v.title}</span>
               <span className="mc-dur">{v.duration}</span>
               <span className="mc-play">▶</span>
