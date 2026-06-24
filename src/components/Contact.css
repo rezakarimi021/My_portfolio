@@ -45,7 +45,7 @@
 }
 
 .contact-list a:hover {
-  color: var(--brown-accent);
+  color: var(--accent);
 }
 
 .contact-icon {
@@ -90,7 +90,7 @@
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: var(--brown-accent);
+  border-color: var(--accent);
 }
 
 .success-msg {

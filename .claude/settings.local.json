@@ -3,7 +3,26 @@
     "allow": [
       "Bash(npm.cmd install *)",
       "Bash(mkdir -p src/i18n/locales)",
-      "Bash(mkdir -p src/hooks)"
+      "Bash(mkdir -p src/hooks)",
+      "PowerShell(ls \"E:\\\\ProgramingProjects\\\\test_project\\\\portfolio\\\\dist\\\\assets\" | Where-Object { $_.Name -match \"\\(Blog|Events|Student|Instructors|Profile|CourseDetail\\)\" } | Select-Object Name)",
+      "PowerShell(ls \"E:\\\\ProgramingProjects\\\\test_project\\\\portfolio\\\\node_modules\" -Name | Where-Object { $_ -match \"cache|rolldown\" } | Select-Object)",
+      "PowerShell($content = Get-Content \"E:\\\\ProgramingProjects\\\\test_project\\\\portfolio\\\\dist\\\\assets\\\\index-DsAnbS1F.js\" -Raw; $len = $content.Length; Write-Output \"Total JS size: $len chars\"; if \\($content -match \"inst-card\"\\) { \"Instructors found\" } else { \"No instructors\" }; if \\($content -match \"eim-overlay\"\\) { \"ExitIntent found\" } else { \"No ExitIntent\" })",
+      "PowerShell(cd \"E:\\\\ProgramingProjects\\\\test_project\\\\portfolio\"; $env:VITE_CJS_IGNORE_WARNING=\"1\"; node -e \"const {build} = require\\('vite'\\); build\\({build:{emptyOutDir:true}}\\).then\\(\\(\\)=>console.log\\('done'\\)\\).catch\\(e=>console.error\\(e.message\\)\\)\" 2>&1 | Select-Object -Last 5)",
+      "PowerShell(ls \"E:\\\\ProgramingProjects\\\\test_project\\\\portfolio\" -Force | Where-Object { $_.PSIsContainer } | Select-Object Name)",
+      "PowerShell(Remove-Item *)",
+      "PowerShell(ls \"$env:USERPROFILE\\\\.rolldown\" -ErrorAction SilentlyContinue | Select-Object Name; ls \"$env:LOCALAPPDATA\\\\rolldown\" -ErrorAction SilentlyContinue | Select-Object Name; ls \"$env:TEMP\\\\rolldown\" -ErrorAction SilentlyContinue | Select-Object Name)",
+      "Bash(chromium-cli *)",
+      "Bash(node -e \"require\\('playwright'\\)\")",
+      "Bash(curl -sf http://localhost:5174)",
+      "Bash(curl -sf \"http://localhost:5174/assets/index-DVeQRsbn.js\")",
+      "Bash(curl -sf \"http://localhost:5174/src/components/Instructors.jsx\")",
+      "Bash(curl -sf \"http://localhost:5174/src/components/Instructors.css\")",
+      "PowerShell(New-Item *)",
+      "PowerShell(cmdkey *)",
+      "WebFetch(domain:localhost)",
+      "Bash(git *)",
+      "Bash(Get-Content \"E:\\\\ProgramingProjects\\\\test_project\\\\portfolio\\\\package.json\")",
+      "Bash(Select-String \"homepage\")"
     ]
   }
 }

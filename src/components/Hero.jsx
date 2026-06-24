@@ -3,20 +3,6 @@ import './Hero.css';
 import profilePhoto from '../assets/photo_2026-06-05_23-04-51.jpg';
 import { useLocale } from '../hooks/useLocale';
 
-const CODE_SYMS = [
-  { s: '</>', x: 5,  delay: 0.0, dur: 14, size: 1.3 },
-  { s: '{}',  x: 12, delay: 2.1, dur: 18, size: 1.0 },
-  { s: '=>',  x: 21, delay: 0.7, dur: 12, size: 1.5 },
-  { s: '()',  x: 30, delay: 3.4, dur: 16, size: 1.1 },
-  { s: '01',  x: 39, delay: 1.2, dur: 20, size: 1.0 },
-  { s: ';',   x: 47, delay: 0.4, dur: 11, size: 1.8 },
-  { s: '[]',  x: 55, delay: 2.8, dur: 15, size: 1.2 },
-  { s: '##',  x: 63, delay: 1.6, dur: 17, size: 1.0 },
-  { s: '&&',  x: 72, delay: 0.9, dur: 13, size: 1.1 },
-  { s: '!=',  x: 82, delay: 3.0, dur: 19, size: 1.0 },
-  { s: '++',  x: 90, delay: 1.5, dur: 14, size: 1.3 },
-];
-
 function useTypewriter(words) {
   const [text, setText] = useState('');
   const stateRef = useRef({ wordIdx: 0, charIdx: 0, deleting: false });
@@ -72,27 +58,10 @@ export default function Hero() {
 
   return (
     <section id="hero" className="hero">
-      <div className="hero-code-bg" aria-hidden="true">
-        {CODE_SYMS.map((s, i) => (
-          <span key={i} className="hcb-sym" style={{
-            left: `${s.x}%`,
-            animationDelay: `${s.delay}s`,
-            animationDuration: `${s.dur}s`,
-            fontSize: `${s.size}rem`,
-          }}>
-            {s.s}
-          </span>
-        ))}
-      </div>
-
-      <div className="hero-orb hero-orb-1" aria-hidden="true" />
-      <div className="hero-orb hero-orb-2" aria-hidden="true" />
-
       <div className="hero-split">
         <div className="hero-photo-col">
           <div className="hero-photo-frame">
             <img src={profilePhoto} alt="غلامرضا کریمی‌پور" className="hero-photo-img" />
-            <div className="hero-photo-ring" />
           </div>
 
           <div className="hfb hfb-1" aria-hidden="true">
@@ -136,9 +105,9 @@ export default function Hero() {
           </div>
 
           <div className="hero-trust">
-            <span>✅ {t('hero.trustCert')}</span>
-            <span>💬 {t('hero.trustSupport')}</span>
-            <span>♾️ {t('hero.trustLifetime')}</span>
+            <span>{t('hero.trustCert')}</span>
+            <span>{t('hero.trustSupport')}</span>
+            <span>{t('hero.trustLifetime')}</span>
           </div>
 
           <div className="hero-actions">
@@ -146,8 +115,8 @@ export default function Hero() {
               {t('hero.btnCourses')}
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <a href="#books" className="hero-btn-secondary">
-              {t('hero.btnBooks')}
+            <a href="#contact" className="hero-btn-secondary">
+              تماس با من
             </a>
           </div>
         </div>
@@ -163,11 +132,6 @@ export default function Hero() {
         ))}
       </div>
 
-      <div className="hero-wave" aria-hidden="true">
-        <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
-          <path fill="#f8f9ff" d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" />
-        </svg>
-      </div>
     </section>
   );
 }

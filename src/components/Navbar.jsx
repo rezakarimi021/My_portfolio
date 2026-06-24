@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import './Navbar.css';
 import { useAuth }   from '../context/AuthContext';
 import { useLocale } from '../hooks/useLocale';
@@ -45,16 +45,13 @@ const AdminIcon = () => (
 
 export default function Navbar({
   theme, toggleTheme, cartQty, onCartOpen,
-  onMyCoursesClick, onAdminClick, onSearchOpen,
-  onBlogClick, onEventsClick, onProfileClick,
+  onSearchOpen, onBlogClick, onEventsClick,
 }) {
-  const { user, isAdmin, logout } = useAuth();
+  const { isAdmin } = useAuth();
   const { t, lang, changeLang }   = useLocale();
 
-  const [scrolled,     setScrolled]     = useState(false);
-  const [menuOpen,     setMenuOpen]     = useState(false);
-  const [profileOpen,  setProfileOpen]  = useState(false);
-  const profileRef = useRef(null);
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -62,20 +59,7 @@ export default function Navbar({
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  useEffect(() => {
-    const handle = (e) => {
-      if (profileRef.current && !profileRef.current.contains(e.target)) {
-        setProfileOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handle);
-    return () => document.removeEventListener('mousedown', handle);
-  }, []);
-
-  const closeAll = () => { setMenuOpen(false); setProfileOpen(false); };
-
-  const userName = user?.fullName || user?.username || '';
-  const initial  = userName ? userName.trim().charAt(0).toUpperCase() : 'U';
+  const closeAll = () => setMenuOpen(false);
 
   const navLinks = [
     { label: t('nav.about'),   href: '#about',   type: 'anchor' },
@@ -124,7 +108,7 @@ export default function Navbar({
       {/* ── Right actions ── */}
       <div className="nav-end">
 
-        {/* Search */}
+        {/* Search — always visible */}
         <button className="nav-icon-btn" onClick={onSearchOpen} aria-label="جستجو" title="جستجو">
           <SearchIcon />
         </button>
@@ -134,56 +118,6 @@ export default function Navbar({
           <CartIcon />
           {cartQty > 0 && <span className="nav-badge">{cartQty}</span>}
         </button>
-
-        <span className="nav-vr" aria-hidden="true" />
-
-        {/* Profile dropdown */}
-        <div className="nav-profile-wrap" ref={profileRef}>
-          <button
-            className={`nav-avatar-btn${profileOpen ? ' active' : ''}`}
-            onClick={() => setProfileOpen((p) => !p)}
-            aria-haspopup="true"
-            aria-expanded={profileOpen}
-          >
-            <span className="nav-initials">{initial}</span>
-            {userName && <span className="nav-uname">{userName}</span>}
-            <svg className="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" width="11" height="11">
-              <polyline points="6 9 12 15 18 9"/>
-            </svg>
-          </button>
-
-          {profileOpen && (
-            <div className="nav-dropdown" role="menu">
-              <div className="nav-dd-header">
-                <div className="nav-dd-avatar">{initial}</div>
-                <div>
-                  <p className="nav-dd-name">{userName}</p>
-                  <p className="nav-dd-role">کاربر{isAdmin ? ' | ادمین' : ''}</p>
-                </div>
-              </div>
-
-              <div className="nav-dd-body">
-                <button className="nav-dd-item" onClick={() => { onMyCoursesClick(); closeAll(); }} role="menuitem">
-                  <CoursesIcon /> {t('nav.myCourses')}
-                </button>
-                <button className="nav-dd-item" onClick={() => { onProfileClick(); closeAll(); }} role="menuitem">
-                  <UserIcon /> پروفایل من
-                </button>
-                {isAdmin && (
-                  <button className="nav-dd-item" onClick={() => { onAdminClick(); closeAll(); }} role="menuitem">
-                    <AdminIcon /> {t('nav.adminPanel')}
-                  </button>
-                )}
-              </div>
-
-              <div className="nav-dd-footer">
-                <button className="nav-dd-item nav-dd-logout" onClick={() => { logout(); closeAll(); }} role="menuitem">
-                  <LogoutIcon /> {t('nav.logout')}
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
 
         {/* Theme */}
         <button className="nav-icon-btn nav-theme-btn" onClick={toggleTheme} aria-label="تغییر تم">

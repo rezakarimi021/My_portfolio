@@ -15,9 +15,6 @@
 .lp-bg {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse at 75% 25%, rgba(107, 58, 31, 0.55) 0%, transparent 60%),
-    radial-gradient(ellipse at 15% 80%, rgba(200, 132, 62, 0.2)  0%, transparent 50%);
   pointer-events: none;
 }
 
@@ -142,7 +139,7 @@
 
 .lp-field input:focus {
   border-color: var(--brown-accent);
-  box-shadow: 0 0 0 3px rgba(200, 132, 62, 0.15);
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.08);
 }
 
 .lp-field input::placeholder {
@@ -166,10 +163,9 @@
   justify-content: center;
   gap: 0.3rem;
   padding: 0.7rem 1rem;
-  background: linear-gradient(135deg, #1e1b4b 0%, #2d2a6e 50%, #1e1b4b 100%);
+  background: #111111;
   border-radius: 10px;
-  border: 1.5px solid var(--brown-accent);
-  box-shadow: 0 0 12px rgba(124, 58, 237, 0.25), inset 0 1px 0 rgba(255,255,255,0.05);
+  border: 1.5px solid #333333;
   user-select: none;
   direction: ltr;
 }
@@ -178,11 +174,10 @@
   font-family: 'Courier New', monospace;
   font-size: 1.4rem;
   font-weight: 700;
-  color: #fff;
+  color: #ffffff;
   letter-spacing: 0.05em;
   display: inline-block;
   transform: rotate(calc((var(--i) % 2 == 0 ? -1 : 1) * (var(--i) * 3deg - 6deg)));
-  text-shadow: 0 0 8px rgba(167, 139, 250, 0.8);
 }
 
 .lp-captcha-refresh {
@@ -317,15 +312,17 @@
 
 /* ── Dark mode ──────────────────────────────────────────── */
 
-[data-theme="dark"] .lp-card       { background: #1a160e; }
+[data-theme="dark"] .lp-card       { background: #161616; }
 [data-theme="dark"] .lp-title      { color: var(--text-dark); }
 [data-theme="dark"] .lp-brand      { color: var(--text-dark); }
 [data-theme="dark"] .lp-field input {
-  background: #12100a;
-  border-color: #2e2518;
+  background: #0f0f0f;
+  border-color: #2a2a2a;
   color: var(--text-dark);
 }
 [data-theme="dark"] .lp-field input:focus { border-color: var(--brown-accent); }
 [data-theme="dark"] .lp-btn-primary {
-  background: linear-gradient(135deg, var(--brown-accent), var(--brown-light));
+  background: #e8e8e8;
+  color: #111111;
+  box-shadow: none;
 }
