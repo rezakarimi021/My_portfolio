@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react'
 import { Menu, X, ChevronDown } from 'lucide-react'
 
 const categories = [
-  'Web Development', 'Data Science', 'DevOps & Cloud',
-  'Mobile Development', 'Machine Learning', 'System Design',
+  'توسعه وب', 'علم داده', 'دواپس و ابر',
+  'توسعه موبایل', 'یادگیری ماشین', 'طراحی سیستم',
 ]
 
 export function Header() {
@@ -22,7 +22,7 @@ export function Header() {
     color: '#8A8997',
     textDecoration: 'none',
     fontSize: '15px',
-    fontFamily: 'DM Sans, sans-serif',
+    fontFamily: 'Vazirmatn, sans-serif',
     fontWeight: 500,
     borderRadius: '4px',
     transition: 'color 0.2s',
@@ -46,8 +46,9 @@ export function Header() {
     }}>
       <div className="container-dp">
         <div style={{ display: 'flex', alignItems: 'center', height: '68px', gap: '8px' }}>
+
           {/* Logo */}
-          <a href="#" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', marginRight: '24px' }}>
+          <a href="#" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', marginLeft: '24px' }}>
             <span style={{ color: '#4A78F5', fontSize: '18px', lineHeight: 1 }}>◆</span>
             <span style={{
               fontFamily: 'Space Grotesk, sans-serif',
@@ -70,12 +71,12 @@ export function Header() {
                 onMouseEnter={e => (e.currentTarget.style.color = '#EEECEA')}
                 onMouseLeave={e => (e.currentTarget.style.color = '#8A8997')}
               >
-                Courses <ChevronDown size={13} style={{ transition: 'transform 0.2s', transform: coursesOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
+                دوره‌ها <ChevronDown size={13} style={{ transition: 'transform 0.2s', transform: coursesOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
               </button>
 
               {coursesOpen && (
                 <div style={{
-                  position: 'absolute', top: 'calc(100% + 4px)', left: 0,
+                  position: 'absolute', top: 'calc(100% + 4px)', right: 0,
                   backgroundColor: '#141419',
                   border: '1px solid #1E1E26',
                   borderRadius: '6px',
@@ -88,7 +89,7 @@ export function Header() {
                     <a key={cat} href="#courses" style={{
                       display: 'block', padding: '9px 12px',
                       color: '#8A8997', textDecoration: 'none',
-                      fontSize: '14px', fontFamily: 'DM Sans, sans-serif',
+                      fontSize: '14px', fontFamily: 'Vazirmatn, sans-serif',
                       borderRadius: '4px', transition: 'all 0.15s',
                     }}
                     onMouseEnter={e => {
@@ -104,8 +105,8 @@ export function Header() {
               )}
             </div>
 
-            {['Learning Paths', 'Blog', 'About'].map(item => (
-              <a key={item} href={`#${item.toLowerCase().replace(' ', '-')}`}
+            {['مسیرهای یادگیری', 'وبلاگ', 'درباره ما'].map(item => (
+              <a key={item} href="#"
                 style={navLink as React.CSSProperties}
                 onMouseEnter={e => (e.currentTarget.style.color = '#EEECEA')}
                 onMouseLeave={e => (e.currentTarget.style.color = '#8A8997')}
@@ -114,17 +115,17 @@ export function Header() {
           </nav>
 
           {/* Right CTA */}
-          <div style={{ alignItems: 'center', gap: '12px', marginLeft: 'auto' }} className="hidden md:flex">
+          <div style={{ alignItems: 'center', gap: '12px', marginRight: 'auto' }} className="hidden md:flex">
             <a href="#" style={{
               color: '#8A8997', textDecoration: 'none', fontSize: '15px',
-              fontFamily: 'DM Sans, sans-serif', fontWeight: 500,
+              fontFamily: 'Vazirmatn, sans-serif', fontWeight: 500,
               transition: 'color 0.2s',
             }}
             onMouseEnter={e => (e.currentTarget.style.color = '#EEECEA')}
             onMouseLeave={e => (e.currentTarget.style.color = '#8A8997')}
-            >Sign In</a>
+            >ورود</a>
             <a href="#courses" className="btn-primary" style={{ padding: '9px 20px', fontSize: '14px' }}>
-              Start Learning →
+              ← شروع یادگیری
             </a>
           </div>
 
@@ -132,7 +133,7 @@ export function Header() {
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             style={{
-              marginLeft: 'auto', background: 'none', border: 'none',
+              marginRight: 'auto', background: 'none', border: 'none',
               cursor: 'pointer', color: '#EEECEA', padding: '4px',
             }}
             className="flex md:hidden"
@@ -147,19 +148,19 @@ export function Header() {
             padding: '8px 0 24px',
             borderTop: '1px solid #1E1E26',
           }} className="flex md:hidden flex-col">
-            {['Courses', 'Learning Paths', 'Blog', 'About'].map(item => (
+            {['دوره‌ها', 'مسیرهای یادگیری', 'وبلاگ', 'درباره ما'].map(item => (
               <a key={item} href="#" onClick={() => setMobileOpen(false)} style={{
                 display: 'block', padding: '14px 0',
                 color: '#8A8997', textDecoration: 'none',
-                fontSize: '16px', fontFamily: 'DM Sans, sans-serif',
+                fontSize: '16px', fontFamily: 'Vazirmatn, sans-serif',
                 fontWeight: 500,
                 borderBottom: '1px solid #1E1E26',
               }}>{item}</a>
             ))}
             <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <a href="#" style={{ color: '#8A8997', textDecoration: 'none', fontSize: '15px', fontFamily: 'DM Sans, sans-serif' }}>Sign In</a>
+              <a href="#" style={{ color: '#8A8997', textDecoration: 'none', fontSize: '15px', fontFamily: 'Vazirmatn, sans-serif' }}>ورود</a>
               <a href="#courses" onClick={() => setMobileOpen(false)} className="btn-primary" style={{ textAlign: 'center', justifyContent: 'center' }}>
-                Start Learning →
+                ← شروع یادگیری
               </a>
             </div>
           </div>

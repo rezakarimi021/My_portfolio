@@ -10,53 +10,44 @@ export function CTABanner() {
       <div className="container-dp">
         <div style={{
           fontFamily: 'JetBrains Mono, monospace',
-          fontSize: '11px',
-          fontWeight: 500,
-          letterSpacing: '0.15em',
-          textTransform: 'uppercase',
-          color: '#4A78F5',
-          marginBottom: '20px',
-        }}>start today</div>
+          fontSize: '11px', fontWeight: 500,
+          letterSpacing: '0.1em', textTransform: 'uppercase',
+          color: '#4A78F5', marginBottom: '20px',
+        }}>همین امروز شروع کنید</div>
 
         <h2 style={{
-          fontFamily: 'Space Grotesk, sans-serif',
-          fontSize: 'clamp(32px, 5vw, 48px)',
-          fontWeight: 800,
-          color: '#EEECEA',
-          lineHeight: 1.1,
-          letterSpacing: '-0.02em',
+          fontFamily: 'Vazirmatn, sans-serif',
+          fontSize: 'clamp(28px, 5vw, 44px)',
+          fontWeight: 800, color: '#EEECEA',
+          lineHeight: 1.2, letterSpacing: '-0.01em',
           marginBottom: '16px',
         }}>
-          Ready to start building?
+          آماده‌اید شروع به ساختن کنید؟
         </h2>
 
         <p style={{
-          fontFamily: 'DM Sans, sans-serif',
-          fontSize: '17px',
-          color: '#8A8997',
-          lineHeight: 1.6,
-          maxWidth: '480px',
+          fontFamily: 'Vazirmatn, sans-serif',
+          fontSize: '17px', color: '#8A8997',
+          lineHeight: 1.8, maxWidth: '480px',
           margin: '0 auto 40px',
         }}>
-          47 courses. No fluff. Instructors who ship.
-          Your first course starts the moment you enroll.
+          ۴۷ دوره. بدون محتوای اضافی. مدرسانی که کد می‌نویسند.
+          اولین دوره شما از لحظه‌ای که ثبت‌نام می‌کنید شروع می‌شود.
         </p>
 
         <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
           <a href="#courses" className="btn-primary" style={{ fontSize: '16px', padding: '14px 32px' }}>
-            Browse All Courses →
+            ← مشاهده همه دوره‌ها
           </a>
           <a href="#learning-paths" className="btn-ghost" style={{ fontSize: '16px', padding: '14px 32px' }}>
-            View Learning Paths
+            مشاهده مسیرهای یادگیری
           </a>
         </div>
 
         <p style={{
-          fontFamily: 'DM Sans, sans-serif',
-          fontSize: '13px',
-          color: '#52515A',
-          marginTop: '24px',
-        }}>30-day refund guarantee · Lifetime access · Certificate included</p>
+          fontFamily: 'Vazirmatn, sans-serif',
+          fontSize: '13px', color: '#52515A', marginTop: '24px',
+        }}>ضمانت بازگشت وجه ۳۰ روزه · دسترسی مادام‌العمر · گواهی‌نامه شامل است</p>
       </div>
     </section>
   )

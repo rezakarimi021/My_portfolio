@@ -7,91 +7,68 @@ import {
 
 const faqs = [
   {
-    q: 'Do I get lifetime access after enrolling?',
-    a: 'Yes. Once enrolled, you have permanent access to the course and all future updates. We add new lessons whenever the ecosystem changes significantly.',
+    q: 'آیا بعد از ثبت‌نام دسترسی مادام‌العمر دارم؟',
+    a: 'بله. پس از ثبت‌نام، دسترسی دائمی به دوره و تمام به‌روزرسانی‌های آینده دارید. هر بار که اکوسیستم تغییر مهمی می‌کند، جلسات جدید اضافه می‌کنیم.',
   },
   {
-    q: 'Are these courses beginner-friendly?',
-    a: 'It depends on the course. Each card shows a difficulty level: Beginner, Intermediate, or Advanced. Check the colored border — blue is Beginner, purple is Intermediate, orange is Advanced — and read the prerequisites on the course page before enrolling.',
+    q: 'آیا این دوره‌ها برای مبتدیان مناسب است؟',
+    a: 'بستگی به دوره دارد. هر کارت دوره سطح آن را نشان می‌دهد: مبتدی، متوسط یا پیشرفته. حاشیه رنگی کارت را ببینید — آبی مبتدی، بنفش متوسط، نارنجی پیشرفته — و پیش‌نیازها را در صفحه دوره بخوانید.',
   },
   {
-    q: "What if I don't like a course?",
-    a: "You can request a full refund within 30 days of purchase, no questions asked. We'd rather you find the right course than keep your money.",
+    q: 'اگر از دوره راضی نبودم چه می‌شود؟',
+    a: 'در ۳۰ روز اول خرید می‌توانید بدون هیچ سؤالی درخواست بازگشت وجه کامل دهید. ترجیح می‌دهیم دوره مناسب پیدا کنید تا اینکه پول شما را نگه داریم.',
   },
   {
-    q: 'Do you offer team or corporate pricing?',
-    a: 'Yes. For teams of 5 or more, contact us at teams@devpath.io for a volume discount and centralized billing. We work with engineering managers directly.',
+    q: 'آیا تخفیف گروهی یا سازمانی دارید؟',
+    a: 'بله. برای تیم‌های ۵ نفر و بیشتر، با ما از طریق teams@devpath.io تماس بگیرید تا تخفیف حجمی و صورتحساب متمرکز داشته باشید.',
   },
   {
-    q: 'Can I download lessons for offline viewing?',
-    a: 'Yes. All lessons are available for download via our iOS and Android apps. Web-based downloads are available for Pro subscribers.',
+    q: 'آیا می‌توانم جلسات را برای مشاهده آفلاین دانلود کنم؟',
+    a: 'بله. تمام جلسات از طریق اپلیکیشن iOS و Android ما قابل دانلود هستند. دانلود از طریق وب برای اشتراک‌های Pro در دسترس است.',
   },
   {
-    q: 'Are certificates included?',
-    a: 'Every course includes a completion certificate you can share on LinkedIn or with employers. Certificates are issued via Credly and link to a verifiable credential.',
+    q: 'آیا گواهی‌نامه شامل می‌شود؟',
+    a: 'هر دوره شامل گواهی‌نامه تکمیل است که می‌توانید در LinkedIn یا نزد کارفرماها به اشتراک بگذارید. گواهی‌نامه‌ها از طریق Credly صادر می‌شوند و به اعتبار قابل تأیید لینک می‌شوند.',
   },
   {
-    q: 'How are instructors selected?',
-    a: 'We only work with practitioners who are actively building in production. Every instructor goes through a 3-stage review: portfolio check, sample lesson, and content audit before being published.',
+    q: 'چگونه مدرسان انتخاب می‌شوند؟',
+    a: 'فقط با متخصصانی کار می‌کنیم که در محیط تولیدی فعال هستند. هر مدرس ۳ مرحله بررسی را طی می‌کند: بررسی پرتفولیو، جلسه نمونه، و بازبینی محتوا.',
   },
   {
-    q: 'What language are the courses in?',
-    a: 'All courses are in English. Auto-generated subtitles are available in 12 languages, with human-reviewed subtitles in Spanish, French, and German.',
+    q: 'دوره‌ها به چه زبانی هستند؟',
+    a: 'تمام دوره‌ها به فارسی ارائه می‌شوند. زیرنویس خودکار در ۱۲ زبان موجود است و زیرنویس بررسی‌شده توسط انسان به زبان‌های عربی، انگلیسی و ترکی نیز در دسترس است.',
   },
 ]
 
 export function FAQ() {
   return (
-    <section id="faq" style={{
-      padding: '80px 0',
-      borderTop: '1px solid #1E1E26',
-    }}>
+    <section id="faq" style={{ padding: '80px 0', borderTop: '1px solid #1E1E26' }}>
       <div className="container-dp">
         <div style={{ marginBottom: '48px' }}>
-          <div className="section-label">common questions</div>
-          <h2 className="section-title" style={{ marginBottom: '0' }}>Before you enroll</h2>
+          <div className="section-label">سؤالات متداول</div>
+          <h2 className="section-title" style={{ marginBottom: '0' }}>قبل از ثبت‌نام</h2>
         </div>
 
         <div style={{ maxWidth: '720px' }}>
           <Accordion type="single" collapsible style={{ borderTop: '1px solid #1E1E26' }}>
             {faqs.map((faq, i) => (
-              <AccordionItem
-                key={i}
-                value={`item-${i}`}
-                style={{
-                  borderBottom: '1px solid #1E1E26',
-                }}
-              >
-                <AccordionTrigger
-                  style={{
-                    fontFamily: 'Space Grotesk, sans-serif',
-                    fontSize: '16px',
-                    fontWeight: 600,
-                    color: '#EEECEA',
-                    padding: '20px 0',
-                    textAlign: 'left',
-                    background: 'none',
-                    border: 'none',
-                    width: '100%',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    gap: '16px',
-                    textDecoration: 'none',
-                  }}
-                >
+              <AccordionItem key={i} value={`item-${i}`} style={{ borderBottom: '1px solid #1E1E26' }}>
+                <AccordionTrigger style={{
+                  fontFamily: 'Vazirmatn, sans-serif',
+                  fontSize: '15px', fontWeight: 700,
+                  color: '#EEECEA', padding: '20px 0',
+                  textAlign: 'right', background: 'none', border: 'none',
+                  width: '100%', cursor: 'pointer',
+                  display: 'flex', justifyContent: 'space-between',
+                  alignItems: 'center', gap: '16px', textDecoration: 'none',
+                }}>
                   {faq.q}
                 </AccordionTrigger>
-                <AccordionContent
-                  style={{
-                    fontFamily: 'DM Sans, sans-serif',
-                    fontSize: '15px',
-                    color: '#8A8997',
-                    lineHeight: 1.7,
-                    paddingBottom: '20px',
-                  }}
-                >
+                <AccordionContent style={{
+                  fontFamily: 'Vazirmatn, sans-serif',
+                  fontSize: '14px', color: '#8A8997',
+                  lineHeight: 1.9, paddingBottom: '20px',
+                }}>
                   {faq.a}
                 </AccordionContent>
               </AccordionItem>

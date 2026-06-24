@@ -12,7 +12,7 @@ import { Footer } from './components/Footer'
 
 function App() {
   return (
-    <div style={{ backgroundColor: '#0C0C0F', minHeight: '100vh', color: '#EEECEA' }}>
+    <div dir="rtl" style={{ backgroundColor: '#0C0C0F', minHeight: '100vh', color: '#EEECEA' }}>
       <Header />
       <main>
         <Hero />

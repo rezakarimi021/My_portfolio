@@ -2,42 +2,42 @@ import { useState, useEffect, useRef } from 'react'
 import { Star } from 'lucide-react'
 
 const difficultyColor: Record<string, string> = {
-  beginner: '#4A78F5',
-  intermediate: '#7F42EF',
-  advanced: '#E88040',
+  مبتدی: '#4A78F5',
+  متوسط: '#7F42EF',
+  پیشرفته: '#E88040',
 }
 
 const previewCourses = [
   {
-    title: 'Python for Data Science',
-    instructor: 'Dr. Farrukh Tashkentov',
+    title: 'پایتون برای علم داده',
+    instructor: 'دکتر فرخ تاشکنتوف',
     rating: 4.9,
     students: 2341,
-    duration: '14h 32m',
-    price: '$89.00',
-    difficulty: 'intermediate',
+    duration: '۱۴ ساعت ۳۲ دقیقه',
+    price: '$۸۹.۰۰',
+    difficulty: 'متوسط',
     icon: '⬡',
     gradient: 'linear-gradient(135deg, #0D1B3E 0%, #1a1030 100%)',
   },
   {
-    title: 'React & TypeScript Mastery',
-    instructor: 'Sarah Chen',
+    title: 'تسلط بر ری‌اکت و تایپ‌اسکریپت',
+    instructor: 'سارا چن',
     rating: 4.8,
     students: 3205,
-    duration: '22h 15m',
-    price: '$119.00',
-    difficulty: 'intermediate',
+    duration: '۲۲ ساعت ۱۵ دقیقه',
+    price: '$۱۱۹.۰۰',
+    difficulty: 'متوسط',
     icon: '◈',
     gradient: 'linear-gradient(135deg, #0a1a2e 0%, #0d1f35 100%)',
   },
   {
-    title: 'Kubernetes in Production',
-    instructor: 'Yuki Tanaka',
+    title: 'کوبرنتیز در محیط تولید',
+    instructor: 'یوکی تاناکا',
     rating: 4.9,
     students: 891,
-    duration: '18h 30m',
-    price: '$149.00',
-    difficulty: 'advanced',
+    duration: '۱۸ ساعت ۳۰ دقیقه',
+    price: '$۱۴۹.۰۰',
+    difficulty: 'پیشرفته',
     icon: '⬡',
     gradient: 'linear-gradient(135deg, #1a0d00 0%, #2a1500 100%)',
   },
@@ -57,6 +57,7 @@ export function Hero() {
   }, [paused])
 
   const course = previewCourses[activeIdx]
+  const color = difficultyColor[course.difficulty]
 
   return (
     <section style={{ padding: '80px 0 96px' }}>
@@ -68,41 +69,40 @@ export function Hero() {
           alignItems: 'center',
         }} className="md:grid-cols-[55fr_45fr]">
 
-          {/* Left — headline + CTAs */}
+          {/* Right (RTL: appears right) — headline + CTAs */}
           <div>
             <div className="section-label" style={{ marginBottom: '20px' }}>
-              programming education
+              آموزش برنامه‌نویسی
             </div>
 
             <h1 style={{
-              fontFamily: 'Space Grotesk, sans-serif',
+              fontFamily: 'Vazirmatn, sans-serif',
               fontWeight: 800,
-              fontSize: 'clamp(40px, 6vw, 64px)',
-              lineHeight: 1.05,
-              letterSpacing: '-0.02em',
+              fontSize: 'clamp(36px, 5.5vw, 60px)',
+              lineHeight: 1.2,
+              letterSpacing: '-0.01em',
               color: '#EEECEA',
               marginBottom: '0',
             }}>
-              Build skills<br />
+              مهارت بسازید<br />
               <span style={{
-                fontVariant: 'all-small-caps',
-                letterSpacing: '0.12em',
+                letterSpacing: '0.05em',
                 fontWeight: 800,
-                fontSize: 'clamp(40px, 6vw, 64px)',
+                fontSize: 'clamp(36px, 5.5vw, 60px)',
                 color: '#EEECEA',
-              }}>that compound.</span>
+              }}>که رشد می‌کنند.</span>
             </h1>
 
             <p style={{
               marginTop: '28px',
               fontSize: '18px',
-              lineHeight: 1.7,
+              lineHeight: 1.9,
               color: '#8A8997',
               maxWidth: '480px',
-              fontFamily: 'DM Sans, sans-serif',
+              fontFamily: 'Vazirmatn, sans-serif',
             }}>
-              Courses taught by people still writing production code —
-              not textbook authors or conference speakers.
+              دوره‌هایی که توسط افرادی تدریس می‌شود که هنوز کد تولیدی
+              می‌نویسند — نه نویسندگان کتاب‌های درسی یا سخنرانان کنفرانس.
             </p>
 
             <div style={{
@@ -111,33 +111,33 @@ export function Hero() {
               marginTop: '20px',
               color: '#52515A',
               fontSize: '14px',
-              fontFamily: 'DM Sans, sans-serif',
+              fontFamily: 'Vazirmatn, sans-serif',
             }}>
               <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <span style={{ color: '#4A78F5', fontSize: '8px' }}>●</span>
-                47 courses
+                ۴۷ دوره
               </span>
               <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <span style={{ color: '#4A78F5', fontSize: '8px' }}>●</span>
-                18 instructors
+                ۱۸ مدرس
               </span>
               <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <span style={{ color: '#4A78F5', fontSize: '8px' }}>●</span>
-                12,000+ students
+                +۱۲,۰۰۰ دانش‌آموز
               </span>
             </div>
 
             <div style={{ display: 'flex', gap: '12px', marginTop: '40px', flexWrap: 'wrap' }}>
               <a href="#courses" className="btn-primary" style={{ fontSize: '15px' }}>
-                Browse Courses →
+                ← مشاهده دوره‌ها
               </a>
               <a href="#" className="btn-ghost" style={{ fontSize: '15px' }}>
-                ▶ Watch sample lesson
+                ▶ نمونه درس ببینید
               </a>
             </div>
           </div>
 
-          {/* Right — course preview carousel */}
+          {/* Left (RTL: appears left) — carousel */}
           <div
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
@@ -145,8 +145,10 @@ export function Hero() {
           >
             <div style={{
               backgroundColor: '#141419',
-              border: `1px solid #1E1E26`,
-              borderLeft: `3px solid ${difficultyColor[course.difficulty]}`,
+              borderTop: `1px solid #1E1E26`,
+              borderBottom: `1px solid #1E1E26`,
+              borderLeft: `1px solid #1E1E26`,
+              borderRight: `3px solid ${color}`,
               borderRadius: '6px',
               overflow: 'hidden',
               transition: 'border-color 0.5s ease',
@@ -162,10 +164,8 @@ export function Hero() {
                 overflow: 'hidden',
               }}>
                 <div style={{
-                  fontSize: '64px',
-                  opacity: 0.15,
-                  position: 'absolute',
-                  fontFamily: 'monospace',
+                  fontSize: '64px', opacity: 0.15,
+                  position: 'absolute', fontFamily: 'monospace',
                 }}>{'{ }'}</div>
                 <div style={{
                   width: '64px', height: '64px',
@@ -173,42 +173,37 @@ export function Hero() {
                   backgroundColor: 'rgba(74,120,245,0.15)',
                   border: `1px solid rgba(74,120,245,0.3)`,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: '28px', color: difficultyColor[course.difficulty],
-                  zIndex: 1,
+                  fontSize: '28px', color: color, zIndex: 1,
                 }}>{course.icon}</div>
                 <div style={{
-                  position: 'absolute', top: '12px', right: '12px',
-                  backgroundColor: `${difficultyColor[course.difficulty]}22`,
-                  border: `1px solid ${difficultyColor[course.difficulty]}44`,
-                  borderRadius: '3px',
-                  padding: '3px 8px',
-                  fontSize: '11px',
-                  fontFamily: 'JetBrains Mono, monospace',
-                  fontWeight: 500,
-                  color: difficultyColor[course.difficulty],
-                  textTransform: 'capitalize',
+                  position: 'absolute', top: '12px', left: '12px',
+                  backgroundColor: `${color}22`,
+                  border: `1px solid ${color}44`,
+                  borderRadius: '3px', padding: '3px 8px',
+                  fontSize: '11px', fontFamily: 'Vazirmatn, sans-serif',
+                  fontWeight: 500, color: color,
                 }}>{course.difficulty}</div>
               </div>
 
               {/* Card body */}
               <div style={{ padding: '20px 22px 22px' }}>
                 <h3 style={{
-                  fontFamily: 'Space Grotesk, sans-serif',
-                  fontSize: '18px', fontWeight: 600,
+                  fontFamily: 'Vazirmatn, sans-serif',
+                  fontSize: '17px', fontWeight: 700,
                   color: '#EEECEA', marginBottom: '6px',
-                  transition: 'all 0.3s',
                 }}>{course.title}</h3>
-                <p style={{ color: '#8A8997', fontSize: '14px', fontFamily: 'DM Sans, sans-serif', marginBottom: '14px' }}>
+                <p style={{ color: '#8A8997', fontSize: '13px', fontFamily: 'Vazirmatn, sans-serif', marginBottom: '14px' }}>
                   {course.instructor}
                 </p>
 
                 <div style={{
                   display: 'flex', alignItems: 'center', gap: '8px',
-                  marginBottom: '16px', fontSize: '13px', color: '#8A8997', fontFamily: 'DM Sans, sans-serif',
+                  marginBottom: '16px', fontSize: '13px', color: '#8A8997',
+                  fontFamily: 'Vazirmatn, sans-serif',
                 }}>
                   <Star size={13} fill="#E88040" color="#E88040" />
-                  <span style={{ color: '#EEECEA', fontWeight: 500 }}>{course.rating}</span>
-                  <span>({course.students.toLocaleString()} students)</span>
+                  <span style={{ color: '#EEECEA', fontWeight: 600 }}>{course.rating}</span>
+                  <span>({course.students.toLocaleString()} دانش‌آموز)</span>
                   <span style={{ color: '#52515A' }}>·</span>
                   <span>{course.duration}</span>
                 </div>
@@ -220,7 +215,7 @@ export function Hero() {
                     color: '#EEECEA',
                   }}>{course.price}</span>
                   <a href="#courses" className="btn-primary" style={{ padding: '9px 18px', fontSize: '14px' }}>
-                    Enroll Now →
+                    ← ثبت‌نام
                   </a>
                 </div>
               </div>
@@ -234,13 +229,10 @@ export function Hero() {
                   onClick={() => setActiveIdx(i)}
                   style={{
                     width: i === activeIdx ? '20px' : '6px',
-                    height: '6px',
-                    borderRadius: '3px',
+                    height: '6px', borderRadius: '3px',
                     backgroundColor: i === activeIdx ? '#4A78F5' : '#1E1E26',
-                    border: 'none',
-                    cursor: 'pointer',
-                    transition: 'all 0.3s ease',
-                    padding: 0,
+                    border: 'none', cursor: 'pointer',
+                    transition: 'all 0.3s ease', padding: 0,
                   }}
                 />
               ))}

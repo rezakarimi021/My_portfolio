@@ -1,8 +1,8 @@
 const stats = [
-  { value: '47', label: 'Courses' },
-  { value: '18', label: 'Instructors' },
-  { value: '12,000+', label: 'Students' },
-  { value: '4.8', label: 'Average Rating' },
+  { value: '۴۷', label: 'دوره' },
+  { value: '۱۸', label: 'مدرس' },
+  { value: '+۱۲,۰۰۰', label: 'دانش‌آموز' },
+  { value: '۴.۸', label: 'میانگین امتیاز' },
 ]
 
 export function StatsBar() {
@@ -22,19 +22,18 @@ export function StatsBar() {
           {stats.map((s) => (
             <div key={s.label} style={{ textAlign: 'center' }}>
               <div style={{
-                fontFamily: 'Space Grotesk, sans-serif',
+                fontFamily: 'Vazirmatn, sans-serif',
                 fontSize: 'clamp(32px, 5vw, 44px)',
                 fontWeight: 800,
                 color: '#EEECEA',
                 lineHeight: 1,
-                letterSpacing: '-0.02em',
+                letterSpacing: '-0.01em',
               }}>{s.value}</div>
               <div style={{
-                fontFamily: 'DM Sans, sans-serif',
+                fontFamily: 'Vazirmatn, sans-serif',
                 fontSize: '14px',
                 color: '#52515A',
                 marginTop: '6px',
-                letterSpacing: '0.02em',
               }}>{s.label}</div>
             </div>
           ))}
