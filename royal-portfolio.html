@@ -223,15 +223,11 @@ section{position:relative;padding:8rem 6%;overflow:hidden}
 
 .sk-card{
   background:var(--glass);backdrop-filter:blur(24px);
-  border:1px solid var(--glass-b);border-radius:22px;
+  border-radius:22px;
   padding:2rem 1.4rem 1.6rem;text-align:center;
   position:relative;overflow:hidden;
   opacity:0;transform:translateY(30px) scale(.95);
-  transition:opacity .6s,transform .6s,box-shadow .4s,border-color .4s
-}
-.sk-card::before{
-  content:'';position:absolute;top:0;right:0;left:0;height:1px;
-  background:linear-gradient(270deg,transparent,rgba(255,255,255,.08),transparent)
+  transition:opacity .6s,transform .6s,box-shadow .4s
 }
 .sk-card::after{
   content:'';position:absolute;inset:0;border-radius:22px;
@@ -239,7 +235,6 @@ section{position:relative;padding:8rem 6%;overflow:hidden}
 }
 .sk-card:hover{
   box-shadow:0 22px 60px rgba(0,0,0,.52),0 0 var(--card-glow-size,0px) var(--card-glow-clr,transparent);
-  border-color:rgba(255,255,255,.11);
   transform:translateY(-10px) scale(1.02)!important
 }
 .sk-card:hover::after{opacity:1}
@@ -261,14 +256,12 @@ section{position:relative;padding:8rem 6%;overflow:hidden}
 /* ══ SERVICES ══ */
 .cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:4rem}
 .g-card{
-  background:var(--glass);backdrop-filter:blur(24px);border:1px solid var(--glass-b);border-radius:22px;
+  background:var(--glass);backdrop-filter:blur(24px);border-radius:22px;
   padding:2.3rem;position:relative;overflow:hidden;
   opacity:0;transform:translateY(36px);
-  transition:opacity .65s,transform .65s,box-shadow .4s,border-color .4s
+  transition:opacity .65s,transform .65s,box-shadow .4s
 }
-.g-card::before{content:'';position:absolute;top:0;right:0;left:0;height:1px;background:linear-gradient(270deg,transparent,var(--gold),transparent);opacity:0;transition:opacity .4s}
-.g-card:hover{transform:translateY(-10px)!important;box-shadow:0 26px 65px rgba(0,0,0,.52),0 0 30px rgba(251,191,36,.07);border-color:rgba(251,191,36,.18)}
-.g-card:hover::before{opacity:1}
+.g-card:hover{transform:translateY(-10px)!important;box-shadow:0 26px 65px rgba(0,0,0,.52),0 0 30px rgba(251,191,36,.07)}
 .g-card.vis{opacity:1;transform:translateY(0)}
 .c-icon{width:52px;height:52px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.45rem;margin-bottom:1.25rem;box-shadow:0 5px 18px rgba(0,0,0,.3)}
 .c-title{
@@ -283,12 +276,12 @@ section{position:relative;padding:8rem 6%;overflow:hidden}
 /* ══ PORTFOLIO ══ */
 .port-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.8rem;margin-top:4rem}
 .p-card{
-  background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-b);border-radius:22px;overflow:hidden;
+  background:var(--glass);backdrop-filter:blur(20px);border-radius:22px;overflow:visible;
   opacity:0;transform:translateY(36px);transition:opacity .65s,transform .65s,box-shadow .4s
 }
 .p-card.vis{opacity:1;transform:translateY(0)}
 .p-card:hover{transform:translateY(-8px)!important;box-shadow:0 30px 70px rgba(0,0,0,.52),0 0 40px rgba(251,191,36,.08)}
-.p-img{width:100%;height:205px;position:relative;display:flex;align-items:center;justify-content:center;font-size:3.8rem}
+.p-img{width:100%;height:205px;position:relative;display:flex;align-items:center;justify-content:center;font-size:3.8rem;overflow:hidden;border-radius:22px 22px 0 0}
 .p-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 38%,rgba(3,2,10,.98))}
 .p-badge{position:absolute;top:1rem;left:1rem;z-index:1;padding:.26rem .82rem;border-radius:50px;font-size:.68rem;font-weight:600;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.32);color:var(--gold)}
 .p-body{padding:1.6rem}
@@ -307,8 +300,8 @@ section{position:relative;padding:8rem 6%;overflow:hidden}
 .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1.6rem;margin-top:4.5rem}
 .st-item{opacity:0;transform:translateY(28px);transition:opacity .65s,transform .65s}
 .st-item.vis{opacity:1;transform:translateY(0)}
-.st-box{background:var(--glass);backdrop-filter:blur(22px);border:1px solid var(--glass-b);border-radius:22px;padding:2.4rem 1.4rem;text-align:center;transition:border-color .4s,box-shadow .4s}
-.st-box:hover{border-color:rgba(251,191,36,.22);box-shadow:0 18px 50px rgba(0,0,0,.45)}
+.st-box{background:var(--glass);backdrop-filter:blur(22px);border-radius:22px;padding:2.4rem 1.4rem;text-align:center;position:relative;transition:box-shadow .4s}
+.st-box:hover{box-shadow:0 18px 50px rgba(0,0,0,.45)}
 .st-num{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,5.5vw,4.6rem);font-weight:900;line-height:1;display:block;background:linear-gradient(135deg,var(--gold),var(--coral));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 18px rgba(251,191,36,.3))}
 .st-bar{width:32px;height:2px;background:linear-gradient(90deg,var(--gold),var(--coral));margin:.62rem auto;border-radius:2px}
 .st-lbl{font-weight:300;font-size:.82rem;color:var(--sub)}
@@ -316,7 +309,7 @@ section{position:relative;padding:8rem 6%;overflow:hidden}
 /* ══ TESTIMONIALS ══ */
 .slider-wrap{position:relative;margin-top:4rem;overflow:hidden;border-radius:24px}
 .slider-track{display:flex;transition:transform .65s cubic-bezier(.25,.46,.45,.94)}
-.t-card{min-width:100%;padding:3.5rem 3rem;background:rgba(255,255,255,.028);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.065);border-radius:24px;text-align:center}
+.t-card{min-width:100%;padding:3.5rem 3rem;background:rgba(255,255,255,.028);backdrop-filter:blur(24px);border-radius:24px;text-align:center}
 .t-stars{color:var(--gold);font-size:1.05rem;letter-spacing:.2em;margin-bottom:1.4rem}
 .t-quote{font-family:'Playfair Display',serif;font-size:5.5rem;line-height:.3;display:block;background:linear-gradient(135deg,var(--gold),var(--coral));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:1.8rem}
 .t-text{font-weight:300;font-size:1.02rem;line-height:2.08;color:rgba(255,255,255,.76);max-width:680px;margin:0 auto 2.2rem;font-style:italic}
@@ -374,6 +367,26 @@ footer::before{content:'';position:absolute;top:0;right:5%;left:5%;height:1px;ba
 .foot-line{width:72px;height:1px;background:linear-gradient(270deg,transparent,var(--gold),transparent);margin:2rem auto}
 .foot-copy{font-size:.76rem;color:rgba(255,255,255,.18)}
 .foot-copy .glow{color:var(--gold);text-shadow:0 0 10px rgba(251,191,36,.48)}
+
+/* ══ BORDER TRACE ══ */
+.bt-svg{
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  pointer-events:none;overflow:visible;z-index:6;border-radius:inherit
+}
+.bt-path{
+  fill:none;
+  stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:100;stroke-dashoffset:100;
+  opacity:0;
+  transition:stroke-dashoffset .52s cubic-bezier(.4,0,.2,1),opacity .18s ease
+}
+.sk-card:hover .bt-path,
+.g-card:hover .bt-path,
+.p-card:hover .bt-path,
+.st-box:hover .bt-path{
+  stroke-dashoffset:0;
+  opacity:1
+}
 
 /* ══ RESPONSIVE ══ */
 @media(max-width:1100px){.sk-grid{grid-template-columns:repeat(3,1fr)}}
@@ -928,9 +941,9 @@ function renderSkills(filter){
       <div class="sk-cat">${s.catLabel}</div>
     </div>`;
   }).join('');
-  // Small delay to allow DOM paint before observing
   requestAnimationFrame(()=>{
     grid.querySelectorAll('.sk-card').forEach(card=>skObs.observe(card));
+    requestAnimationFrame(installBorderTraces);
   });
 }
 
@@ -944,6 +957,8 @@ document.getElementById('skillTabs').addEventListener('click',e=>{
 });
 
 renderSkills('all');
+// Initial border-trace install (non-skill cards are static)
+requestAnimationFrame(()=>requestAnimationFrame(installBorderTraces));
 
 /* ── 9. STAT COUNTER ── */
 (()=>{
@@ -1043,7 +1058,55 @@ async function handleForm(e){
   }
 }
 
-/* ── 13. RIPPLE ── */
+/* ── 13. BORDER TRACE ── */
+const BT_GRAD='btMasterGrad';
+(()=>{
+  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+  svg.setAttribute('aria-hidden','true');
+  svg.style.cssText='position:absolute;width:0;height:0;overflow:hidden;pointer-events:none';
+  svg.innerHTML=`<defs>
+    <linearGradient id="${BT_GRAD}" x1="1" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0%"   stop-color="#FBBF24"/>
+      <stop offset="42%"  stop-color="#FB7185"/>
+      <stop offset="100%" stop-color="#A78BFA"/>
+    </linearGradient>
+  </defs>`;
+  document.body.prepend(svg);
+})();
+
+function installBorderTraces(){
+  document.querySelectorAll('.sk-card,.g-card,.p-card,.st-box').forEach((card,idx)=>{
+    // Remove stale SVG from previous renders
+    const old=card.querySelector('.bt-svg');
+    if(old)old.remove();
+
+    const W=card.offsetWidth, H=card.offsetHeight;
+    if(!W||!H)return;
+
+    const r=22, pad=1;
+    const x0=pad, y0=pad, x1=W-pad, y1=H-pad, cx=W/2;
+
+    // Clockwise path starting from center-top
+    const d=`M${cx},${y0} L${x1-r},${y0} A${r},${r},0,0,1,${x1},${y0+r} L${x1},${y1-r} A${r},${r},0,0,1,${x1-r},${y1} L${x0+r},${y1} A${r},${r},0,0,1,${x0},${y1-r} L${x0},${y0+r} A${r},${r},0,0,1,${x0+r},${y0} L${cx},${y0}`;
+
+    const svgEl=document.createElementNS('http://www.w3.org/2000/svg','svg');
+    svgEl.className.baseVal='bt-svg';
+    svgEl.setAttribute('viewBox',`0 0 ${W} ${H}`);
+    svgEl.setAttribute('xmlns','http://www.w3.org/2000/svg');
+
+    const path=document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.className.baseVal='bt-path';
+    path.setAttribute('d',d);
+    path.setAttribute('stroke',`url(#${BT_GRAD})`);
+    path.setAttribute('stroke-width','1.5');
+    path.setAttribute('pathLength','100');
+
+    svgEl.appendChild(path);
+    card.appendChild(svgEl);
+  });
+}
+
+/* ── 15. RIPPLE ── */
 document.querySelectorAll('.btn').forEach(b=>b.addEventListener('click',function(e){
   const r=this.getBoundingClientRect(),sz=Math.max(r.width,r.height)*2.4;
   const rip=document.createElement('span');rip.className='rip';
@@ -1063,7 +1126,11 @@ document.querySelectorAll('.btn').forEach(b=>b.addEventListener('click',function
   })();
 })();
 
-/* ── 15. SMOOTH SCROLL ── */
+/* ── 16. RESIZE → RETRACE ── */
+let resizeTimer;
+addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(installBorderTraces,160);});
+
+/* ── 17. SMOOTH SCROLL ── */
 document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',function(e){
   const t=document.querySelector(this.getAttribute('href'));
   if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
