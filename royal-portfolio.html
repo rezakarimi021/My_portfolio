@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Digital Palace — Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Poppins:wght@300;400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* ===========================
+           CSS Custom Properties
+        =========================== */
+        :root {
+            --purple:      #8B5CF6;
+            --amethyst:    #A78BFA;
+            --gold:        #FBBF24;
+            --coral:       #FB7185;
+            --sapphire:    #60A5FA;
+            --pink:        #EC4899;
+            --crimson:     #F43F5E;
+            --pearl:       #F8FAFC;
+            --purple-dark: #6D28D9;
+            --gold-dark:   #D97706;
+        }
+
+        /* ===========================
+           Reset & Base
+        =========================== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html  { scroll-behavior: smooth; }
+        body  { font-family: 'Inter', sans-serif; color: var(--pearl); background: #180830; overflow-x: hidden; }
+
+        /* Custom golden scrollbar */
+        ::-webkit-scrollbar { width: 7px; }
+        ::-webkit-scrollbar-track { background: #0d051a; }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--purple), var(--gold), var(--coral));
+            border-radius: 4px;
+        }
+
+        /* ===========================
+           Fixed Background Canvas
+        =========================== */
+        #bg-canvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* ===========================
+           Floating 3D Ring Ornaments
+        =========================== */
+        .floating-elements {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .ring {
+            position: absolute;
+            border-radius: 50%;
+            will-change: transform;
+        }
+        .ring-1 {
+            width: 320px; height: 320px;
+            top: 8%; right: 8%;
+            border: 1.5px solid rgba(167, 139, 250, 0.35);
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.15) inset, 0 0 60px rgba(139, 92, 246, 0.08);
+            animation: ringRotate 28s linear infinite;
+        }
+        .ring-2 {
+            width: 220px; height: 220px;
+            top: 55%; left: 4%;
+            border: 1.5px solid rgba(251, 191, 36, 0.3);
+            box-shadow: 0 0 30px rgba(251, 191, 36, 0.1) inset;
+            animation: ringRotate 18s linear infinite reverse;
+        }
+        .ring-3 {
+            width: 160px; height: 160px;
+            bottom: 18%; right: 18%;
+            border: 1.5px solid rgba(251, 113, 133, 0.3);
+            animation: ringRotate 14s linear infinite;
+        }
+        .ring-4 {
+            width: 80px; height: 80px;
+            top: 35%; right: 30%;
+            border: 1px solid rgba(96, 165, 250, 0.4);
+            animation: ringRotate 10s linear infinite reverse;
+        }
+
+        @keyframes ringRotate {
+            0%   { transform: rotate(0deg)   scale(1); }
+            50%  { transform: rotate(180deg) scale(1.06); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        /* Glow orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.12;
+            animation: orbFloat 9s ease-in-out infinite;
+            pointer-events: none;
+        }
+        .orb-1 { width: 500px; height: 500px; background: var(--purple);  top: -150px; left: -150px; animation-delay: 0s; }
+        .orb-2 { width: 350px; height: 350px; background: var(--gold);    bottom: 80px; right: -80px; animation-delay: 4.5s; }
+        .orb-3 { width: 280px; height: 280px; background: var(--coral);   top: 50%; left: 33%; animation-delay: 2s; }
+        .orb-4 { width: 200px; height: 200px; background: var(--sapphire); top: 25%; left: 65%; animation-delay: 6s; }
+
+        @keyframes orbFloat {
+            0%, 100% { transform: translateY(0)    scale(1); }
+            50%       { transform: translateY(-35px) scale(1.06); }
+        }
+
+        /* ===========================
+           Navigation
+        =========================== */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 1.3rem 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            backdrop-filter: blur(24px) saturate(1.5);
+            background: rgba(109, 40, 217, 0.15);
+            border-bottom: 1px solid rgba(251, 191, 36, 0.15);
+            transition: all 0.4s ease;
+        }
+        nav.scrolled {
+            background: rgba(16, 5, 40, 0.85);
+            padding: 0.85rem 6%;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.4);
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.55rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--amethyst) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 12px rgba(251, 191, 36, 0.45));
+            letter-spacing: 0.02em;
+        }
+
+        .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+        .nav-links a {
+            color: rgba(248,250,252,0.75);
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            font-size: 0.88rem;
+            letter-spacing: 0.06em;
+            position: relative;
+            transition: color 0.3s;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; left: 0;
+            width: 0; height: 1px;
+            background: linear-gradient(90deg, var(--gold), var(--amethyst));
+            transition: width 0.35s ease;
+        }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* ===========================
+           Hero Section
+        =========================== */
+        #hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Code-rain canvas as hero "image" */
+        #code-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%; height: 100%;
+            opacity: 0.09;
+            pointer-events: none;
+            z-index: 0;
+            will-change: opacity;
+        }
+
+        .hero-image-wrap {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            will-change: opacity, transform;
+        }
+        /* Purple-to-deep gradient as the "stunning programming image" */
+        .hero-image-wrap::before {
+            content: '';
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 15% 50%,  rgba(139,92,246,0.45) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 80% at 85% 20%,  rgba(96,165,250,0.25) 0%, transparent 55%),
+                radial-gradient(ellipse 50% 70% at 65% 85%,  rgba(251,113,133,0.25) 0%, transparent 55%),
+                radial-gradient(ellipse 40% 40% at 50% 50%,  rgba(167,139,250,0.2) 0%, transparent 70%);
+        }
+        .hero-image-wrap::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(
+                160deg,
+                rgba(60,15,120,0.55) 0%,
+                rgba(109,40,217,0.35) 35%,
+                rgba(167,139,250,0.2) 65%,
+                rgba(15,5,40,0.6) 100%
+            );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            padding: 2rem 1.5rem;
+            max-width: 940px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.45rem 1.4rem;
+            border: 1px solid rgba(251, 191, 36, 0.45);
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            font-size: 0.78rem;
+            letter-spacing: 0.2em;
+            color: var(--gold);
+            margin-bottom: 2.2rem;
+            backdrop-filter: blur(12px);
+            background: rgba(251, 191, 36, 0.08);
+            animation: fadeInDown 0.9s ease 0.3s both;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8.5vw, 7.5rem);
+            font-weight: 900;
+            line-height: 1.04;
+            margin-bottom: 1.6rem;
+            text-shadow: 0 0 60px rgba(251,191,36,0.25), 0 6px 25px rgba(0,0,0,0.55);
+            animation: fadeInUp 0.9s ease 0.5s both;
+        }
+        .gradient-word {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--amethyst) 55%, var(--pearl) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 22px rgba(251,191,36,0.35));
+            display: inline-block;
+        }
+
+        /* Typewriter cursor */
+        .typewriter-wrap::after {
+            content: '|';
+            animation: blink 0.7s step-end infinite;
+            color: var(--gold);
+            -webkit-text-fill-color: var(--gold);
+            filter: none;
+        }
+        @keyframes blink { 0%,100% { opacity:1 } 50% { opacity:0 } }
+
+        .hero-sub {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            font-size: clamp(1rem, 2.5vw, 1.35rem);
+            color: rgba(248,250,252,0.75);
+            margin-bottom: 3rem;
+            letter-spacing: 0.04em;
+            line-height: 1.7;
+            animation: fadeInUp 0.9s ease 0.7s both;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.9s ease 0.9s both;
+        }
+
+        /* ===========================
+           Buttons
+        =========================== */
+        .btn-royal {
+            position: relative;
+            display: inline-block;
+            padding: 1rem 2.6rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.92rem;
+            letter-spacing: 0.07em;
+            text-decoration: none;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            overflow: hidden;
+            transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s ease;
+        }
+        .btn-gold {
+            background: linear-gradient(135deg, #FBBF24, #F59E0B);
+            color: #150820;
+            box-shadow: 0 4px 22px rgba(251,191,36,0.45);
+        }
+        .btn-gold:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 10px 45px rgba(251,191,36,0.65);
+        }
+        .btn-ghost {
+            background: rgba(255,255,255,0.07);
+            color: var(--pearl);
+            border: 1px solid rgba(251,191,36,0.35);
+            backdrop-filter: blur(12px);
+        }
+        .btn-ghost:hover {
+            transform: translateY(-4px);
+            background: rgba(251,191,36,0.12);
+            box-shadow: 0 10px 35px rgba(251,191,36,0.2);
+        }
+
+        /* Ripple */
+        .btn-royal .ripple {
+            position: absolute; border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            transform: scale(0);
+            animation: rippleOut 0.65s linear;
+            pointer-events: none;
+        }
+        @keyframes rippleOut { to { transform: scale(4); opacity: 0; } }
+
+        /* Scroll indicator */
+        .scroll-hint {
+            position: absolute;
+            bottom: 2.5rem; left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+            animation: fadeInUp 0.9s ease 1.3s both;
+        }
+        .scroll-label {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.25em;
+            color: rgba(248,250,252,0.4);
+        }
+        .scroll-bar {
+            width: 1px; height: 55px;
+            background: linear-gradient(180deg, var(--gold), transparent);
+            animation: scrollPulse 2.2s ease-in-out infinite;
+        }
+        @keyframes scrollPulse {
+            0%,100% { opacity: 0.3; transform: scaleY(1); }
+            50%      { opacity: 1;   transform: scaleY(1.25); }
+        }
+
+        /* ===========================
+           Section Shared
+        =========================== */
+        section { position: relative; padding: 9rem 6%; overflow: hidden; }
+
+        .s-label {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300; font-size: 0.72rem;
+            letter-spacing: 0.3em; text-transform: uppercase;
+            color: var(--gold); margin-bottom: 0.9rem;
+            opacity: 0; transform: translateY(28px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .s-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            font-weight: 900; line-height: 1.1; margin-bottom: 1.4rem;
+            text-shadow: 0 0 40px rgba(251,191,36,0.15);
+            opacity: 0; transform: translateY(28px);
+            transition: opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s;
+        }
+        .s-desc {
+            font-family: 'Poppins', sans-serif; font-weight: 300;
+            font-size: 1.05rem; color: rgba(248,250,252,0.65);
+            max-width: 580px; line-height: 1.85;
+            opacity: 0; transform: translateY(28px);
+            transition: opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s;
+        }
+        .s-label.vis, .s-title.vis, .s-desc.vis {
+            opacity: 1; transform: translateY(0);
+        }
+
+        .gold-grad {
+            background: linear-gradient(135deg, var(--gold), var(--coral));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .purple-gold-grad {
+            background: linear-gradient(135deg, var(--amethyst), var(--gold));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ===========================
+           Section 2 — Glass Cards
+        =========================== */
+        #cards { }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+            gap: 1.8rem;
+            margin-top: 4rem;
+        }
+
+        .glass-card {
+            background: rgba(255,255,255,0.045);
+            backdrop-filter: blur(22px) saturate(1.2);
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: 22px;
+            padding: 2.5rem;
+            position: relative; overflow: hidden;
+            opacity: 0; transform: translateY(40px);
+            transition: opacity 0.65s ease, transform 0.65s ease,
+                        box-shadow 0.4s ease, border-color 0.4s ease;
+        }
+        .glass-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0; transition: opacity 0.4s;
+        }
+        .glass-card:hover {
+            transform: translateY(-12px) !important;
+            box-shadow: 0 22px 65px rgba(139,92,246,0.3), 0 0 35px rgba(251,191,36,0.12);
+            border-color: rgba(251,191,36,0.28);
+        }
+        .glass-card:hover::before { opacity: 1; }
+        .glass-card.vis { opacity: 1; transform: translateY(0); }
+
+        .card-icon {
+            width: 58px; height: 58px; border-radius: 15px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.7rem; margin-bottom: 1.5rem;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+        }
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem; font-weight: 700; margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, var(--pearl), var(--gold));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .card-text {
+            font-size: 0.93rem;
+            color: rgba(248,250,252,0.62);
+            line-height: 1.75;
+        }
+
+        /* ===========================
+           Section 3 — Stats
+        =========================== */
+        #stats { text-align: center; }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 3rem;
+            margin-top: 4.5rem;
+        }
+
+        .stat-item {
+            opacity: 0; transform: translateY(30px) scale(0.9);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+        .stat-item.vis { opacity: 1; transform: translateY(0) scale(1); }
+
+        .stat-num {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3.5rem, 8vw, 6rem);
+            font-weight: 900; line-height: 1; display: block;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--coral) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 22px rgba(251,191,36,0.4));
+        }
+        .stat-bar {
+            width: 42px; height: 2px;
+            background: linear-gradient(90deg, var(--gold), var(--coral));
+            margin: 0.75rem auto; border-radius: 2px;
+        }
+        .stat-lbl {
+            font-family: 'Poppins', sans-serif; font-weight: 300;
+            font-size: 0.82rem; letter-spacing: 0.18em;
+            color: rgba(248,250,252,0.55); text-transform: uppercase;
+        }
+
+        /* ===========================
+           Section 4 — Testimonials
+        =========================== */
+        #testimonials { overflow: hidden; }
+
+        .slider-wrap { position: relative; margin-top: 4rem; overflow: hidden; }
+
+        .slider-track {
+            display: flex;
+            transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .t-card {
+            min-width: 100%;
+            padding: 3.5rem 3rem;
+            background: rgba(255,255,255,0.04);
+            backdrop-filter: blur(22px);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 26px;
+            text-align: center;
+        }
+
+        .t-quote {
+            display: block;
+            font-family: 'Playfair Display', serif;
+            font-size: 5.5rem; line-height: 0.5;
+            background: linear-gradient(135deg, var(--gold), var(--coral));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.8rem;
+        }
+        .t-text {
+            font-family: 'Poppins', sans-serif; font-weight: 300;
+            font-size: 1.15rem; line-height: 1.85;
+            color: rgba(248,250,252,0.82);
+            max-width: 680px; margin: 0 auto 2.2rem;
+            font-style: italic;
+        }
+        .t-author {
+            display: flex; align-items: center;
+            justify-content: center; gap: 1.1rem;
+        }
+        .t-avatar {
+            width: 56px; height: 56px; border-radius: 50%;
+            border: 2px solid var(--gold);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem;
+            background: linear-gradient(135deg, var(--purple-dark), var(--amethyst));
+            box-shadow: 0 0 22px rgba(251,191,36,0.3);
+        }
+        .t-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem; font-weight: 700;
+        }
+        .t-role {
+            font-family: 'Poppins', sans-serif; font-weight: 300;
+            font-size: 0.78rem; color: var(--gold); letter-spacing: 0.1em;
+        }
+
+        .slider-nav {
+            display: flex; justify-content: center; align-items: center;
+            gap: 1.6rem; margin-top: 2.6rem;
+        }
+        .s-btn {
+            width: 48px; height: 48px; border-radius: 50%;
+            border: 1px solid rgba(251,191,36,0.35);
+            background: rgba(251,191,36,0.08);
+            color: var(--pearl); font-size: 1.1rem; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s ease; backdrop-filter: blur(10px);
+        }
+        .s-btn:hover {
+            background: rgba(251,191,36,0.25);
+            box-shadow: 0 0 22px rgba(251,191,36,0.3);
+            transform: scale(1.12);
+        }
+        .dots { display: flex; gap: 0.55rem; }
+        .dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: rgba(255,255,255,0.18); cursor: pointer;
+            transition: all 0.3s;
+        }
+        .dot.on {
+            background: var(--gold);
+            box-shadow: 0 0 12px var(--gold);
+            transform: scale(1.4);
+        }
+
+        /* ===========================
+           Footer
+        =========================== */
+        footer {
+            padding: 7rem 6% 3.5rem;
+            text-align: center;
+            position: relative; overflow: hidden;
+        }
+        footer::before {
+            content: '';
+            position: absolute; top: 0; left: 5%; right: 5%; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(251,191,36,0.4), rgba(251,113,133,0.3), transparent);
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--gold), var(--coral), var(--amethyst));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 25px rgba(251,191,36,0.45));
+            margin-bottom: 0.9rem;
+        }
+        .footer-tag {
+            font-family: 'Poppins', sans-serif; font-weight: 300;
+            color: rgba(248,250,252,0.5); letter-spacing: 0.12em;
+            margin-bottom: 3rem; font-size: 0.95rem;
+        }
+        .footer-links {
+            display: flex; justify-content: center;
+            gap: 2.2rem; flex-wrap: wrap; margin-bottom: 3rem;
+        }
+        .footer-links a {
+            color: rgba(248,250,252,0.5); text-decoration: none;
+            font-family: 'Poppins', sans-serif; font-size: 0.85rem;
+            letter-spacing: 0.05em; transition: color 0.3s;
+            position: relative;
+        }
+        .footer-links a::after {
+            content: '';
+            position: absolute; bottom: -4px; left: 0;
+            width: 0; height: 1px;
+            background: linear-gradient(90deg, var(--gold), var(--coral));
+            transition: width 0.35s ease;
+        }
+        .footer-links a:hover { color: var(--gold); }
+        .footer-links a:hover::after { width: 100%; }
+
+        .footer-line {
+            width: 100px; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), var(--coral), transparent);
+            margin: 2rem auto;
+        }
+        .footer-copy {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.78rem; color: rgba(248,250,252,0.28);
+            letter-spacing: 0.05em;
+        }
+        .footer-copy .glow { color: var(--gold); text-shadow: 0 0 8px rgba(251,191,36,0.5); }
+
+        /* ===========================
+           Keyframe Animations
+        =========================== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===========================
+           Responsive
+        =========================== */
+        @media (max-width: 768px) {
+            nav { padding: 1rem 5%; }
+            .nav-links { display: none; }
+            section { padding: 5.5rem 5%; }
+            .t-card { padding: 2.5rem 1.5rem; }
+            .hero-title { font-size: clamp(2.4rem, 12vw, 4rem); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Dynamic gradient background canvas -->
+<canvas id="bg-canvas"></canvas>
+
+<!-- Floating 3D ring ornaments -->
+<div class="floating-elements">
+    <div class="ring ring-1"></div>
+    <div class="ring ring-2"></div>
+    <div class="ring ring-3"></div>
+    <div class="ring ring-4"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+</div>
+
+<!-- Navigation -->
+<nav id="navbar">
+    <div class="nav-logo">✦ Royal.Dev</div>
+    <ul class="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#cards">Services</a></li>
+        <li><a href="#stats">Impact</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#footer">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- ══════════════════════════════
+     HERO SECTION
+══════════════════════════════ -->
+<section id="hero">
+    <!-- Code rain canvas backdrop -->
+    <canvas id="code-canvas"></canvas>
+
+    <!-- Gradient "image" that fades on scroll -->
+    <div class="hero-image-wrap" id="heroImageWrap"></div>
+
+    <!-- Content layer -->
+    <div class="hero-content">
+        <div class="hero-badge">✦ &nbsp; WELCOME TO THE DIGITAL PALACE &nbsp; ✦</div>
+        <h1 class="hero-title">
+            <span class="gradient-word typewriter-wrap" id="typewriterEl">Crafting Royal</span><br>
+            Digital Experiences
+        </h1>
+        <p class="hero-sub">
+            Where artistry meets code — building experiences<br>
+            that transcend the ordinary
+        </p>
+        <div class="hero-cta">
+            <a href="#cards" class="btn-royal btn-gold">Explore My Work</a>
+            <a href="#footer" class="btn-royal btn-ghost">Get In Touch</a>
+        </div>
+    </div>
+
+    <div class="scroll-hint">
+        <span class="scroll-label">SCROLL</span>
+        <div class="scroll-bar"></div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════
+     SECTION 2 — GLASS CARDS
+══════════════════════════════ -->
+<section id="cards">
+    <div class="s-label">✦ WHAT I DO</div>
+    <h2 class="s-title">Royal Craftsmanship<br><span class="gold-grad">in Every Pixel</span></h2>
+    <p class="s-desc">Transforming visions into breathtaking digital realities with precision, passion, and an eye for the extraordinary.</p>
+
+    <div class="cards-grid">
+        <div class="glass-card" style="transition-delay:0.00s">
+            <div class="card-icon" style="background:linear-gradient(135deg,#8B5CF6,#A78BFA)">⚡</div>
+            <h3 class="card-title">Frontend Mastery</h3>
+            <p class="card-text">Pixel-perfect interfaces built with React, Vue, and Next.js. Every animation crafted to feel inevitable, every interaction to feel magical.</p>
+        </div>
+        <div class="glass-card" style="transition-delay:0.13s">
+            <div class="card-icon" style="background:linear-gradient(135deg,#FBBF24,#F59E0B)">🏛</div>
+            <h3 class="card-title">Backend Architecture</h3>
+            <p class="card-text">Robust, scalable systems powering world-class applications. Node.js, Python, and cloud-native solutions built to last decades.</p>
+        </div>
+        <div class="glass-card" style="transition-delay:0.26s">
+            <div class="card-icon" style="background:linear-gradient(135deg,#EC4899,#F43F5E)">✦</div>
+            <h3 class="card-title">UI/UX Strategy</h3>
+            <p class="card-text">Design thinking married to technical execution. Experiences users don't just use — they remember, treasure, and return to.</p>
+        </div>
+        <div class="glass-card" style="transition-delay:0.39s">
+            <div class="card-icon" style="background:linear-gradient(135deg,#60A5FA,#8B5CF6)">◈</div>
+            <h3 class="card-title">Performance & Scale</h3>
+            <p class="card-text">Optimization that turns milliseconds into competitive advantages. Your application supercharged for peak performance at any scale.</p>
+        </div>
+        <div class="glass-card" style="transition-delay:0.52s">
+            <div class="card-icon" style="background:linear-gradient(135deg,#FB7185,#FBBF24)">◎</div>
+            <h3 class="card-title">Brand Identity</h3>
+            <p class="card-text">Cohesive digital identities communicating authority, elegance, and purpose. Making your brand impossible to ignore or forget.</p>
+        </div>
+        <div class="glass-card" style="transition-delay:0.65s">
+            <div class="card-icon" style="background:linear-gradient(135deg,#A78BFA,#60A5FA)">⬡</div>
+            <h3 class="card-title">Mobile Excellence</h3>
+            <p class="card-text">Native-quality mobile experiences using React Native. Your product, flawlessly adapted for every screen, every device, every moment.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════
+     SECTION 3 — STATS
+══════════════════════════════ -->
+<section id="stats">
+    <div class="s-label" style="text-align:center">✦ BY THE NUMBERS</div>
+    <h2 class="s-title" style="text-align:center">Results That<br><span class="gold-grad">Speak Royally</span></h2>
+
+    <div class="stats-row">
+        <div class="stat-item" style="transition-delay:0.00s">
+            <span class="stat-num" data-target="127">0</span>
+            <div class="stat-bar"></div>
+            <div class="stat-lbl">Projects Delivered</div>
+        </div>
+        <div class="stat-item" style="transition-delay:0.15s">
+            <span class="stat-num" data-target="8">0</span>
+            <div class="stat-bar"></div>
+            <div class="stat-lbl">Years of Excellence</div>
+        </div>
+        <div class="stat-item" style="transition-delay:0.30s">
+            <span class="stat-num" data-target="98">0</span>
+            <div class="stat-bar"></div>
+            <div class="stat-lbl">Client Satisfaction %</div>
+        </div>
+        <div class="stat-item" style="transition-delay:0.45s">
+            <span class="stat-num" data-target="43">0</span>
+            <div class="stat-bar"></div>
+            <div class="stat-lbl">Global Clients</div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════
+     SECTION 4 — TESTIMONIALS
+══════════════════════════════ -->
+<section id="testimonials">
+    <div class="s-label">✦ ROYAL REVIEWS</div>
+    <h2 class="s-title">Voices of the<br><span class="purple-gold-grad">Kingdom</span></h2>
+
+    <div class="slider-wrap">
+        <div class="slider-track" id="sliderTrack">
+
+            <div class="t-card">
+                <span class="t-quote">"</span>
+                <p class="t-text">Working with this developer was like watching a maestro at work. Every line of code, every design decision felt deliberate and inspired. Our platform went from forgettable to unforgettable overnight.</p>
+                <div class="t-author">
+                    <div class="t-avatar">👑</div>
+                    <div>
+                        <div class="t-name">Alexandra Chen</div>
+                        <div class="t-role">CEO, LuminaTech</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="t-card">
+                <span class="t-quote">"</span>
+                <p class="t-text">The attention to detail is extraordinary. When we asked for "something special," we received something truly legendary. Our conversion rate increased by 340% in the first month after launch.</p>
+                <div class="t-author">
+                    <div class="t-avatar">⚡</div>
+                    <div>
+                        <div class="t-name">Marcus Aurelius III</div>
+                        <div class="t-role">Founder, NovaSpark</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="t-card">
+                <span class="t-quote">"</span>
+                <p class="t-text">I've worked with agencies across three continents. None come close to this level of craft, dedication, and sheer creative brilliance. This is what the future of web development looks like.</p>
+                <div class="t-author">
+                    <div class="t-avatar">✦</div>
+                    <div>
+                        <div class="t-name">Sofia Valeria</div>
+                        <div class="t-role">Director, Élite Digital</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="slider-nav">
+        <button class="s-btn" id="prevBtn">&#8592;</button>
+        <div class="dots" id="dots">
+            <div class="dot on"  data-i="0"></div>
+            <div class="dot"     data-i="1"></div>
+            <div class="dot"     data-i="2"></div>
+        </div>
+        <button class="s-btn" id="nextBtn">&#8594;</button>
+    </div>
+</section>
+
+<!-- ══════════════════════════════
+     FOOTER
+══════════════════════════════ -->
+<footer id="footer">
+    <div class="footer-logo">Royal.Dev</div>
+    <p class="footer-tag">Building digital palaces since 2016</p>
+
+    <div class="footer-links">
+        <a href="#hero">Home</a>
+        <a href="#cards">Services</a>
+        <a href="#stats">Portfolio</a>
+        <a href="#testimonials">Reviews</a>
+        <a href="mailto:hello@royal.dev">hello@royal.dev</a>
+    </div>
+
+    <div class="footer-line"></div>
+    <p class="footer-copy">© 2026 Royal.Dev &nbsp;—&nbsp; Crafted with <span class="glow">♦</span> and dedication</p>
+</footer>
+
+<!-- ══════════════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════════════ -->
+<script>
+/* ─────────────────────────────────────────────────
+   1. CINEMATIC BACKGROUND — colour-shifting canvas
+───────────────────────────────────────────────── */
+(function () {
+    const c = document.getElementById('bg-canvas');
+    const x = c.getContext('2d');
+    let W, H, scrollY = 0;
+
+    function resize () { W = c.width = innerWidth; H = c.height = innerHeight; }
+    resize();
+    addEventListener('resize', resize);
+    addEventListener('scroll', () => { scrollY = window.scrollY; }, { passive: true });
+
+    function lerp (a, b, t) { return a + (b - a) * t; }
+    function lerpRGB (a, b, t) {
+        return [lerp(a[0],b[0],t), lerp(a[1],b[1],t), lerp(a[2],b[2],t)];
+    }
+    function rgb (c) { return `rgb(${c[0]|0},${c[1]|0},${c[2]|0})`; }
+
+    /* colour keyframes — top & bottom at scroll 0, 0.35, 0.65, 1 */
+    const keys = {
+        top:    [ [40,8,100],  [80,25,170],  [100,55,30],  [70,20,15]  ],
+        bottom: [ [70,15,150], [105,35,200], [130,80,10],  [110,35,40] ]
+    };
+
+    function getColors (frac) {
+        const n = keys.top.length - 1;
+        const t = frac * n;
+        const lo = Math.min(Math.floor(t), n - 1);
+        const hi = lo + 1;
+        const blend = t - lo;
+        return {
+            top:    lerpRGB(keys.top[lo],    keys.top[hi],    blend),
+            bottom: lerpRGB(keys.bottom[lo], keys.bottom[hi], blend)
+        };
+    }
+
+    function frame () {
+        const docH  = document.documentElement.scrollHeight - innerHeight;
+        const frac  = Math.min(scrollY / Math.max(docH, 1), 1);
+        const { top, bottom } = getColors(frac);
+
+        const g = x.createLinearGradient(0, 0, 0, H);
+        g.addColorStop(0, rgb(top));
+        g.addColorStop(1, rgb(bottom));
+        x.fillStyle = g;
+        x.fillRect(0, 0, W, H);
+
+        requestAnimationFrame(frame);
+    }
+    frame();
+})();
+
+/* ─────────────────────────────────────────────────
+   2. CODE RAIN CANVAS (hero backdrop)
+───────────────────────────────────────────────── */
+(function () {
+    const hero   = document.getElementById('hero');
+    const canvas = document.getElementById('code-canvas');
+    const ctx    = canvas.getContext('2d');
+    const CHARS  = '01アイウエオカキクケコサシスセソタチツテト∑∏∂∆∇♦♠⬡◈✦◎⚡∞≈≠±×÷';
+    const FS     = 13;
+    let W, H, drops = [];
+
+    function resize () {
+        W = canvas.width  = hero.offsetWidth;
+        H = canvas.height = hero.offsetHeight;
+        drops = Array.from({ length: Math.floor(W / FS) }, () => Math.random() * -60);
+    }
+    new ResizeObserver(resize).observe(hero);
+    resize();
+
+    function draw () {
+        ctx.fillStyle = 'rgba(0,0,0,0.055)';
+        ctx.fillRect(0, 0, W, H);
+
+        drops.forEach((y, i) => {
+            const ch = CHARS[Math.floor(Math.random() * CHARS.length)];
+            if (Math.random() > 0.97) {
+                ctx.fillStyle = `rgba(251,191,36,${Math.random() * 0.7 + 0.3})`;
+            } else {
+                ctx.fillStyle = `rgba(167,139,250,${Math.random() * 0.4 + 0.15})`;
+            }
+            ctx.font = `${FS}px monospace`;
+            ctx.fillText(ch, i * FS, y * FS);
+
+            if (y * FS > H && Math.random() > 0.975) drops[i] = 0;
+            else drops[i] += 0.45;
+        });
+
+        requestAnimationFrame(draw);
+    }
+    draw();
+})();
+
+/* ─────────────────────────────────────────────────
+   3. HERO FADE + PARALLAX ON SCROLL
+───────────────────────────────────────────────── */
+(function () {
+    const wrap    = document.getElementById('heroImageWrap');
+    const content = document.querySelector('.hero-content');
+    const FADE_END = 420;
+
+    function update () {
+        const p = Math.min(window.scrollY / FADE_END, 1);
+        if (wrap)    wrap.style.opacity = 1 - p;
+        if (content) {
+            content.style.opacity   = 1 - p * 0.65;
+            content.style.transform = `translateY(${p * -35}px)`;
+        }
+    }
+    addEventListener('scroll', update, { passive: true });
+    update();
+})();
+
+/* ─────────────────────────────────────────────────
+   4. NAVBAR SCROLL STATE
+───────────────────────────────────────────────── */
+(function () {
+    const nav = document.getElementById('navbar');
+    addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', scrollY > 80);
+    }, { passive: true });
+})();
+
+/* ─────────────────────────────────────────────────
+   5. INTERSECTION OBSERVER — entrance animations
+───────────────────────────────────────────────── */
+(function () {
+    const targets = document.querySelectorAll(
+        '.s-label, .s-title, .s-desc, .glass-card, .stat-item'
+    );
+    const obs = new IntersectionObserver(
+        entries => entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); }
+        }),
+        { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+    );
+    targets.forEach(t => obs.observe(t));
+})();
+
+/* ─────────────────────────────────────────────────
+   6. TYPEWRITER
+───────────────────────────────────────────────── */
+(function () {
+    const el      = document.getElementById('typewriterEl');
+    const phrases = ['Crafting Royal', 'Building Elegant', 'Designing Timeless', 'Creating Majestic'];
+    let pi = 0, ci = 0, del = false;
+
+    function tick () {
+        const cur = phrases[pi];
+        el.textContent = del ? cur.slice(0, ci - 1) : cur.slice(0, ci + 1);
+        if (!del) {
+            ci++;
+            if (ci === cur.length) { del = true; setTimeout(tick, 2200); return; }
+        } else {
+            ci--;
+            if (ci === 0) { del = false; pi = (pi + 1) % phrases.length; }
+        }
+        setTimeout(tick, del ? 55 : 95);
+    }
+    setTimeout(tick, 1200);
+})();
+
+/* ─────────────────────────────────────────────────
+   7. STAT COUNTER
+───────────────────────────────────────────────── */
+(function () {
+    const nums = document.querySelectorAll('.stat-num[data-target]');
+    const obs  = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (!e.isIntersecting) return;
+            const el  = e.target;
+            const end = parseInt(el.dataset.target);
+            const t0  = Date.now();
+            const dur = 2000;
+
+            (function step () {
+                const prog  = Math.min((Date.now() - t0) / dur, 1);
+                const eased = 1 - Math.pow(1 - prog, 3);
+                el.textContent = Math.round(eased * end);
+                if (prog < 1) requestAnimationFrame(step);
+                else el.innerHTML = `<span style="font-size:0.5em;vertical-align:super;color:#FBBF24">+</span>${end}`;
+            })();
+            obs.unobserve(el);
+        });
+    }, { threshold: 0.5 });
+    nums.forEach(n => obs.observe(n));
+})();
+
+/* ─────────────────────────────────────────────────
+   8. TESTIMONIALS SLIDER
+───────────────────────────────────────────────── */
+(function () {
+    const track = document.getElementById('sliderTrack');
+    const dots  = document.querySelectorAll('.dot');
+    let cur = 0, total = dots.length, timer;
+
+    function goTo (i) {
+        cur = (i + total) % total;
+        track.style.transform = `translateX(-${cur * 100}%)`;
+        dots.forEach((d, j) => d.classList.toggle('on', j === cur));
+    }
+    function resetTimer () {
+        clearInterval(timer);
+        timer = setInterval(() => goTo(cur + 1), 5000);
+    }
+
+    document.getElementById('prevBtn').addEventListener('click', () => { goTo(cur - 1); resetTimer(); });
+    document.getElementById('nextBtn').addEventListener('click', () => { goTo(cur + 1); resetTimer(); });
+    dots.forEach(d => d.addEventListener('click', () => { goTo(+d.dataset.i); resetTimer(); }));
+
+    resetTimer();
+
+    /* Touch / swipe support */
+    let tx0 = 0;
+    track.addEventListener('touchstart', e => { tx0 = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend',   e => {
+        const dx = e.changedTouches[0].clientX - tx0;
+        if (Math.abs(dx) > 50) { goTo(dx < 0 ? cur + 1 : cur - 1); resetTimer(); }
+    }, { passive: true });
+})();
+
+/* ─────────────────────────────────────────────────
+   9. BUTTON RIPPLE EFFECT
+───────────────────────────────────────────────── */
+document.querySelectorAll('.btn-royal').forEach(btn => {
+    btn.addEventListener('click', function (e) {
+        const rect = this.getBoundingClientRect();
+        const sz   = Math.max(rect.width, rect.height) * 2.2;
+        const rip  = document.createElement('span');
+        rip.className = 'ripple';
+        Object.assign(rip.style, {
+            width:  sz + 'px', height: sz + 'px',
+            left:   (e.clientX - rect.left  - sz / 2) + 'px',
+            top:    (e.clientY - rect.top   - sz / 2) + 'px'
+        });
+        this.appendChild(rip);
+        setTimeout(() => rip.remove(), 700);
+    });
+});
+
+/* ─────────────────────────────────────────────────
+   10. MOUSE PARALLAX on floating rings
+───────────────────────────────────────────────── */
+(function () {
+    const rings = document.querySelectorAll('.ring');
+    let mx = 0.5, my = 0.5;
+
+    addEventListener('mousemove', e => {
+        mx = e.clientX / innerWidth;
+        my = e.clientY / innerHeight;
+    });
+
+    (function loop () {
+        rings.forEach((r, i) => {
+            const f = (i + 1) * 8;
+            const dx = (mx - 0.5) * f;
+            const dy = (my - 0.5) * f;
+            r.style.marginLeft = dx + 'px';
+            r.style.marginTop  = dy + 'px';
+        });
+        requestAnimationFrame(loop);
+    })();
+})();
+
+/* ─────────────────────────────────────────────────
+   11. SMOOTH SCROLL for nav anchors
+───────────────────────────────────────────────── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function (e) {
+        const t = document.querySelector(this.getAttribute('href'));
+        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+});
+</script>
+</body>
+</html>

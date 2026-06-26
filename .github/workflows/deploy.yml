@@ -32,6 +32,9 @@ jobs:
           mkdir -p dist/devpath
           cp devpath-courses/bundle.html dist/devpath/index.html
 
+      - name: Include Royal Portfolio demo
+        run: cp royal-portfolio.html dist/royal-portfolio.html
+
       - name: Deploy to gh-pages branch
         uses: JamesIves/github-pages-deploy-action@v4
         with:
